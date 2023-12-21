@@ -1,2 +1,2 @@
 # stixnet
-C# APIs for STIX 2
+C# API for STIX 2
