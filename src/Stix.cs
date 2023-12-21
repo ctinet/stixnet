@@ -25,7 +25,7 @@ namespace Cti.Stix
         /// </summary>
         [JsonIgnore]
         [BsonIgnore]
-        public byte[] Raw { get; set; } = Array.Empty<byte>();
+        public virtual byte[] Raw { get; set; } = Array.Empty<byte>();
 
         /// <summary>
         /// The type property identifies the type of STIX Object
@@ -35,7 +35,7 @@ namespace Cti.Stix
         [BsonRequired]
         [JsonProperty("type")]
         [BsonElement("type")]
-        public string ObjectType { get; set; } = string.Empty;
+        public virtual string ObjectType { get; set; } = string.Empty;
 
         /// <summary>
         /// The id property uniquely identifies this object.
@@ -45,7 +45,7 @@ namespace Cti.Stix
         [BsonRequired]
         [JsonProperty("id")]
         [BsonElement("id")]
-        public string ID { get; set; } = string.Empty;
+        public virtual string ID { get; set; } = string.Empty;
         
     }
 }
