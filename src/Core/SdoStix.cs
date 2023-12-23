@@ -10,8 +10,12 @@ using System.Threading.Tasks;
 
 namespace Cti.Stix.Core
 {
+    /// <summary>
+    /// STIX Domain Objects
+    /// </summary>
     public interface ISdoStix : IStix
     {
+        public string? SpecVersion { get; set; }
         public string CreatedByRef { get; set; }
 
         public string Created { get; set; }
@@ -36,8 +40,12 @@ namespace Cti.Stix.Core
     }
 
 
-    
-    public class SdoStix : Stix, ISdoStix, IStixSpecVersion
+    /// <summary>
+    /// STIX Domain Objects
+    /// Higher Level Intelligence Objects that represent behaviors and constructs that threat analysts would typically create 
+    /// or work with while understanding the threat landscape.
+    /// </summary>
+    public abstract class SdoStix : Stix, ISdoStix
     {
         /// <summary>
         /// The version of the STIX specification used to represent this object.
@@ -135,7 +143,9 @@ namespace Cti.Stix.Core
         public virtual List<GranularMarking>? GranularMarkings { get; set; } = default;
 
         /// <summary>
-        /// 
+        /// Specifies any extensions of the object, as a dictionary.
+        /// Dictionary keys SHOULD be the id of a STIX Extension object or the name of a predefined object extension found in this specification, 
+        /// depending on the type of extension being used.
         /// </summary>
         [JsonProperty("extensions")]
         [BsonElement("extensions")]

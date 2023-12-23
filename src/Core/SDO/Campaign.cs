@@ -21,9 +21,9 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class Campaign : SdoStix
     {
-        public Campaign(string objectType = "campaign")
+        public Campaign()
         {
-            ObjectType = objectType;
+            ObjectType = "campaign";
         }
 
         /// <summary>
@@ -75,5 +75,105 @@ namespace Cti.Stix.Core.SDO
         [JsonProperty("objective")]
         [BsonElement("objective")]
         public string? Objective { get; set; }
+
+        /*
+         
+         Embedded Relationships
+
+created_by_ref
+
+identifier (of type identity)
+
+object_marking_refs
+
+list of type identifier (of type marking-definition)
+
+Common Relationships
+
+duplicate-of, derived-from, related-to
+
+Source
+
+Relationship Type
+
+Target
+
+Description
+
+campaign
+
+attributed-to
+
+intrusion-set, threat-actor
+
+This Relationship describes that the Intrusion Set or Threat Actor that is involved in carrying out the Campaign.
+
+ 
+
+For example, an attributed-to Relationship from the Glass Gazelle Campaign to the Urban Fowl Threat Actor means that the actor carried out or was involved in some of the activity described by the Campaign.
+
+campaign
+
+compromises
+
+infrastructure
+
+This Relationship describes that the Campaign compromises the related Infrastructure.
+
+campaign
+
+originates-from
+
+location
+
+This Relationship describes that the Campaign originates from the related Location.
+
+ 
+
+For example, an originates-from relationship from the Glass Gazelle Campaign to a Location representing North America means that Glass Gazelle appears to originate from or is located in North America.
+
+campaign
+
+targets
+
+identity, location, vulnerability
+
+This Relationship describes that the Campaign uses exploits of the related Vulnerability or targets the type of victims described by the related Identity or Location.
+
+ 
+
+For example, a targets Relationship from the Glass Gazelle Campaign to a Vulnerability in a blogging platform indicates that attacks performed as part of Glass Gazelle often exploit that Vulnerability.
+
+ 
+
+Similarly, a targets Relationship from the Glass Gazelle Campaign to an Identity describing the energy sector in the United States means that the Campaign typically carries out attacks against targets in that sector.
+
+campaign
+
+uses
+
+attack-pattern, infrastructure, malware, tool
+
+This Relationship describes that attacks carried out as part of the Campaign typically use the related Attack Pattern, Infrastructure, Malware, or Tool.
+
+ 
+
+For example, a uses Relationship from the Glass Gazelle Campaign to the xInject Malware indicates that xInject is often used during attacks attributed to that Campaign.
+
+ 
+
+A campaign, threat actor, intrusion set, malware, or tool takes infrastructure and compromises and/or uses it for their own.
+
+Reverse Relationships
+
+indicator
+
+indicates
+
+campaign
+
+See forward relationship for definition.
+         
+         */
     }
 }

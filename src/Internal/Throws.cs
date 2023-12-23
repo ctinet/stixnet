@@ -1,4 +1,18 @@
-﻿namespace Cti.Stix
+﻿namespace System.Runtime.CompilerServices
+{
+    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    internal sealed class CallerArgumentExpressionAttribute : Attribute
+    {
+        public CallerArgumentExpressionAttribute(string parameterName)
+        {
+            ParameterName = parameterName;
+        }
+
+        public string ParameterName { get; }
+    }
+}
+
+namespace Cti.Stix.Internal
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.CompilerServices;
@@ -6,7 +20,7 @@
     /// <summary>
     /// Defines static methods used to throw exceptions.
     /// </summary>
-    public static class Throws
+    internal static class Throws
     {
         /// <summary>
         /// Throws an System.ArgumentNullException if the specified argument is null.
@@ -49,13 +63,13 @@
 
             if (member == null)
             {
-                DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(19, 2);
-                defaultInterpolatedStringHandler.AppendLiteral("Member ");
-                defaultInterpolatedStringHandler.AppendFormatted(memberName);
-                defaultInterpolatedStringHandler.AppendLiteral(" of ");
-                defaultInterpolatedStringHandler.AppendFormatted(paramName);
-                defaultInterpolatedStringHandler.AppendLiteral(" is null");
-                ArgumentException(paramName, defaultInterpolatedStringHandler.ToStringAndClear());
+                //DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(19, 2);
+                //defaultInterpolatedStringHandler.AppendLiteral("Member ");
+                //defaultInterpolatedStringHandler.AppendFormatted(memberName);
+                //defaultInterpolatedStringHandler.AppendLiteral(" of ");
+                //defaultInterpolatedStringHandler.AppendFormatted(paramName);
+                //defaultInterpolatedStringHandler.AppendLiteral(" is null");
+                ArgumentException(paramName, "");
             }
 
             return member;
@@ -77,13 +91,13 @@
         {
             if (member == null)
             {
-                DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(19, 2);
-                defaultInterpolatedStringHandler.AppendLiteral("Member ");
-                defaultInterpolatedStringHandler.AppendFormatted(memberName);
-                defaultInterpolatedStringHandler.AppendLiteral(" of ");
-                defaultInterpolatedStringHandler.AppendFormatted(paramName);
-                defaultInterpolatedStringHandler.AppendLiteral(" is null");
-                ArgumentException(paramName, defaultInterpolatedStringHandler.ToStringAndClear());
+                //DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(19, 2);
+                //defaultInterpolatedStringHandler.AppendLiteral("Member ");
+                //defaultInterpolatedStringHandler.AppendFormatted(memberName);
+                //defaultInterpolatedStringHandler.AppendLiteral(" of ");
+                //defaultInterpolatedStringHandler.AppendFormatted(paramName);
+                //defaultInterpolatedStringHandler.AppendLiteral(" is null");
+                ArgumentException(paramName, "");
             }
 
             return member;
@@ -151,12 +165,12 @@
         {
             if (bufferSize < requiredSize)
             {
-                DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(44, 2);
-                defaultInterpolatedStringHandler.AppendLiteral("Buffer too small, needed a size of ");
-                defaultInterpolatedStringHandler.AppendFormatted(requiredSize);
-                defaultInterpolatedStringHandler.AppendLiteral(" but got ");
-                defaultInterpolatedStringHandler.AppendFormatted(bufferSize);
-                ArgumentException(paramName, defaultInterpolatedStringHandler.ToStringAndClear());
+                //DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(44, 2);
+                //defaultInterpolatedStringHandler.AppendLiteral("Buffer too small, needed a size of ");
+                //defaultInterpolatedStringHandler.AppendFormatted(requiredSize);
+                //defaultInterpolatedStringHandler.AppendLiteral(" but got ");
+                //defaultInterpolatedStringHandler.AppendFormatted(bufferSize);
+                ArgumentException(paramName, "");
             }
         }
 
@@ -170,13 +184,13 @@
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T IfOutOfRange<T>(T argument, [CallerArgumentExpression("argument")] string paramName = "") where T : struct, Enum
         {
-            if (!Enum.IsDefined(argument))
+            if (!Enum.IsDefined(argument.GetType(), argument))
             {
-                DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(35, 2);
-                defaultInterpolatedStringHandler.AppendFormatted(argument);
-                defaultInterpolatedStringHandler.AppendLiteral(" is an invalid value for enum type ");
-                defaultInterpolatedStringHandler.AppendFormatted(typeof(T));
-                ArgumentOutOfRangeException(paramName, defaultInterpolatedStringHandler.ToStringAndClear());
+                //DefaultInterpolatedStringHandler defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(35, 2);
+                //defaultInterpolatedStringHandler.AppendFormatted(argument);
+                //defaultInterpolatedStringHandler.AppendLiteral(" is an invalid value for enum type ");
+                //defaultInterpolatedStringHandler.AppendFormatted(typeof(T));
+                ArgumentOutOfRangeException(paramName);
             }
 
             return argument;

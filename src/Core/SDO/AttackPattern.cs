@@ -20,13 +20,13 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class AttackPattern : SdoStix
     {
-        public AttackPattern(string objectType = "attack-pattern")
+        public AttackPattern()
         {
-            ObjectType = objectType;
+            ObjectType = "attack-pattern";
         }
 
         /// <summary>
-        /// 
+        /// A name used to identify the Attack Pattern.
         /// </summary>
         [Required]
         [JsonRequired]
@@ -36,25 +36,35 @@ namespace Cti.Stix.Core.SDO
         public string Name { get; set; }
 
         /// <summary>
-        /// 
+        /// A description that provides more details and context about the Attack Pattern, potentially including its purpose and its key characteristics.
         /// </summary>
         [JsonProperty("description")]
         [BsonElement("description")]
         public string? Description { get; set; }
 
         /// <summary>
-        /// 
+        /// Alternative names used to identify this Attack Pattern.
         /// </summary>
         [JsonProperty("aliases")]
         [BsonElement("aliases")]
         public List<string>? Aliases { get; set; }
 
         /// <summary>
-        /// 
+        /// The list of Kill Chain Phases for which this Attack Pattern is used.
         /// </summary>
         [JsonProperty("kill_chain_phases")]
         [BsonElement("kill_chain_phases")]
         public List<KillChainPhase>? KillChainPhases { get; set; }
+
+
+        /// <summary>
+        /// A list of external references which refer to non-STIX information. This property MAY be used to provide one or more Attack Pattern identifiers, 
+        /// such as a CAPEC ID. When specifying a CAPEC ID, the source_name property of the external reference MUST be set to capec and the external_id 
+        /// property MUST be formatted as CAPEC-[id].
+        /// </summary>
+        [JsonProperty("external_references")]
+        [BsonElement("external_references")]
+        public override List<ExternalReference> ExternalReferences { get; set; }
 
         /*
            Embedded Relationships

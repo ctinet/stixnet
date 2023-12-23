@@ -23,7 +23,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class Note : SdoStix
     {
-        public Note(string objectType = "note") { ObjectType = objectType; }
+        public Note() { ObjectType = "note"; }
 
         /// <summary>
         /// A brief summary of the note content.

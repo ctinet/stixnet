@@ -30,7 +30,7 @@ tool_version (String)
     /// </summary>
     public class Tool : SdoStix
     {
-        public Tool(string objectType = "tool") { ObjectType = objectType; }
+        public Tool() { ObjectType = "tool"; }
 
         /// <summary>
         /// The name used to identify the Tool.

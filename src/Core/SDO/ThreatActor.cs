@@ -15,7 +15,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class ThreatActor : SdoStix
     {
-        public ThreatActor(string objectType = "threat-actor") { ObjectType = objectType; }
+        public ThreatActor() { ObjectType = "threat-actor"; }
 
         /// <summary>
         /// A name used to identify this Threat Actor or Threat Actor group.

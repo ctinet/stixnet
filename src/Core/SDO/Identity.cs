@@ -7,10 +7,14 @@ namespace Cti.Stix.Core.SDO
     /// <summary>
     /// Identities can represent actual individuals, organizations, or groups (e.g., ACME, Inc.) as well as classes of individuals, 
     /// organizations, systems or groups (e.g., the finance sector).
+    /// 
+    /// The Identity SDO can capture basic identifying information, contact information, and the sectors that the Identity belongs 
+    /// to. Identity is used in STIX to represent, among other things, targets of attacks, information sources, object creators, 
+    /// and threat actor identities.
     /// </summary>
     public class Identity : SdoStix
     {
-        public Identity(string objectType = "identity") { ObjectType = objectType; }
+        public Identity() { ObjectType = "identity"; }
 
         /// <summary>
         /// The name of this Identity. When referring to a specific entity (e.g., an individual or organization), 
@@ -24,7 +28,8 @@ namespace Cti.Stix.Core.SDO
         public string Name { get; set; }
 
         /// <summary>
-        /// A description that provides more details and context about the Identity, potentially including its purpose and its key characteristics.
+        /// A description that provides more details and context about the Identity, potentially including its purpose and its key 
+        /// characteristics.
         /// </summary>
         [JsonProperty("description")]
         [BsonElement("description")]
@@ -53,7 +58,8 @@ namespace Cti.Stix.Core.SDO
         public List<string>? Sectors { get; set; }
 
         /// <summary>
-        /// The contact information (e-mail, phone number, etc.) for this Identity. No format for this information is currently defined by this specification.
+        /// The contact information (e-mail, phone number, etc.) for this Identity. No format for this information is currently defined 
+        /// by this specification.
         /// </summary>
         [JsonProperty("contact_information")]
         [BsonElement("contact_information")]

@@ -12,7 +12,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class Report : SdoStix
     {
-        public Report(string objectType = "report") { ObjectType = objectType; }
+        public Report() { ObjectType = "report"; }
 
         /// <summary>
         /// A name used to identify the Report.

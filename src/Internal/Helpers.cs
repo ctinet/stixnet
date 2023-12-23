@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Cti.Stix
+namespace Cti.Stix.Internal
 {
-    public static class Helpers
+    internal static class Helpers
     {
         // ValidObjectType - This function will take in a STIX object type and return
         // true if the string represents an actual STIX object type. This is used for

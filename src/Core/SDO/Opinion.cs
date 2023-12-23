@@ -11,7 +11,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class Opinion : SdoStix
     {
-        public Opinion(string objectType = "opinion") { ObjectType = objectType; }
+        public Opinion() { ObjectType = "opinion"; }
 
         /// <summary>
         /// An explanation of why the producer has this Opinion. For example, if an Opinion of strongly-disagree is given,

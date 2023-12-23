@@ -10,8 +10,13 @@ using System.Threading.Tasks;
 
 namespace Cti.Stix.Core
 {
+    /// <summary>
+    /// STIX Relationship Objects
+    /// </summary>
     public interface ISroStix : IStix
     {
+        public string? SpecVersion { get; set; }
+
         public string CreatedByRef { get; set; }
 
         public string Created { get; set; }
@@ -35,7 +40,13 @@ namespace Cti.Stix.Core
         public Dictionary<string, byte[]> Extensions { get; set; }
     }
 
-    public class SroStix : Stix, ISroStix, IStixSpecVersion
+
+    /// <summary>
+    /// STIX Relationship Objects:
+    /// Objects that connect STIX Domain Objects together, STIX Cyber-observable Objects together, and connect STIX Domain Objects 
+    /// and STIX Cyber-observable Objects together to form a more complete understanding of the threat landscape.
+    /// </summary>
+    public abstract class SroStix : Stix, ISroStix
     {
         /// <summary>
         /// The version of the STIX specification used to represent this object.
@@ -122,6 +133,12 @@ namespace Cti.Stix.Core
         [BsonElement("granular_markings")]
         public virtual List<GranularMarking> GranularMarkings { get; set; }
 
+        /// <summary>
+        /// Specifies any extensions of the object, as a dictionary.
+        /// 
+        /// Dictionary keys SHOULD be the id of a STIX Extension object or the name of a predefined object extension found in this specification, 
+        /// depending on the type of extension being used.
+        /// </summary>
         [JsonProperty("extensions")]
         [BsonElement("extensions")]
         public virtual Dictionary<string, byte[]> Extensions { get; set; }

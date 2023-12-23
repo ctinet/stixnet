@@ -16,7 +16,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class Location : SdoStix
     {
-        public Location(string objectType = "Location") { ObjectType = objectType; }
+        public Location() { ObjectType = "Location"; }
 
         /// <summary>
         /// A name used to identify the Location.

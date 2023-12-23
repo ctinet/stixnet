@@ -4,20 +4,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cti.Stix.Core.SDO
 {
-    /*
-        class CourseOfAction(allow_custom=False, **kwargs)
-            For more detailed information on this object’s properties, see the STIX 2.1 specification.
-
-        Properties:	
-            name (String, required)
-            description (String)
-            
-     */
+    /// <summary>
+    /// The Course of Action object in STIX 2.1 is a stub. It is included to support basic use cases (such as sharing prose courses of action) but does not support 
+    /// the ability to represent automated courses of action or contain properties to represent metadata about courses of action. Future STIX 2 releases will expand 
+    /// it to include these capabilities.
+    /// 
+    /// A Course of Action is an action taken either to prevent an attack or to respond to an attack that is in progress. It may describe technical, automatable responses 
+    /// (applying patches, reconfiguring firewalls) but can also describe higher level actions like employee training or policy changes. 
+    /// For example, a course of action to mitigate a vulnerability could describe applying the patch that fixes it.
+    /// 
+    /// The Course of Action SDO contains a textual description of the action; a reserved action property also serves as a placeholder for future inclusion of machine 
+    /// automatable courses of action.
+    /// </summary>
     public class CourseOfAction : SdoStix
     {
-        public CourseOfAction(string objectType = "course-of-action")
+        public CourseOfAction()
         {
-            ObjectType = objectType;
+            ObjectType = "course-of-action";
         }
 
         /// <summary>

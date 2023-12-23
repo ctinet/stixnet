@@ -17,7 +17,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class ObservedData : SdoStix
     {
-        public ObservedData(string objectType = "observed-data") { ObjectType = objectType; }
+        public ObservedData() { ObjectType = "observed-data"; }
 
         /// <summary>
         /// The beginning of the time window during which the data was seen.

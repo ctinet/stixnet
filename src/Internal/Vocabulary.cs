@@ -1,6 +1,6 @@
 ﻿namespace Cti.Stix
 {
-    public class Vocabulary
+    internal class Vocabulary
     {
         public static Dictionary<string, bool> Account
         {

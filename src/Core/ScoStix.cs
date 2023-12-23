@@ -4,13 +4,20 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Reflection.Emit;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Cti.Stix.Core
 {
+    /// <summary>
+    /// STIX Cyber-observable Objects
+    /// </summary>
     public interface IScoStix : IStix
     {
+        public string? SpecVersion { get; set; }
         public List<string> ObjectMarkingRefs { get; set; }
 
         public List<GranularMarking> GranularMarkings { get; set; }
@@ -20,7 +27,18 @@ namespace Cti.Stix.Core
         public bool? Defanged { get; set; }
     }
 
-    public class ScoStix : Stix, IScoStix, IStixSpecVersion
+    /// <summary>
+    /// STIX Cyber-observable Objects
+    /// Objects that represent observed facts about a network or host that may be used and related to higher level intelligence to form 
+    /// a more complete understanding of the threat landscape.
+    /// 
+    /// STIX Cyber-observable Objects (SCOs) document the facts concerning what happened on a network or host, and do not capture the who, 
+    /// when, or why. By associating SCOs with STIX Domain Objects (SDOs), it is possible to convey a higher-level understanding of the 
+    /// threat landscape, and to potentially provide insight as to the who and the why particular intelligence may be relevant to an organization. 
+    /// For example, information about a file that existed, a process that was observed running, or that network traffic occurred between two IPs 
+    /// can all be captured as SCOs.
+    /// </summary>
+    public abstract class ScoStix : Stix, IScoStix
     {
         /// <summary>
         /// The version of the STIX specification used to represent this object.

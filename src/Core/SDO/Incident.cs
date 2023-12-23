@@ -11,7 +11,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class Incident : SdoStix
     {
-        public Incident(string objectType = "incident") { ObjectType = objectType; }
+        public Incident() { ObjectType = "incident"; }
 
         /// <summary>
         /// A name used to identify the Incident.

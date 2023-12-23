@@ -10,15 +10,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Cti.Stix
 {
+    /// <summary>
+    /// Structured Threat Information Expression
+    /// </summary>
     public interface IStix
     {
+        /// <summary>
+        /// The type property identifies the type of STIX Object
+        /// </summary>
         public string ObjectType { get; set; }
 
+        /// <summary>
+        /// The id property uniquely identifies this object.
+        /// </summary>
         public string ID { get; set; }
 
     }
 
-    public class Stix : IStix
+    /// <summary>
+    /// STIX is a schema that defines a taxonomy of cyber threat intelligence
+    /// </summary>
+    public abstract class Stix : IStix
     {
         /// <summary>
         /// Raw is excluded from JSON and BSON serialization

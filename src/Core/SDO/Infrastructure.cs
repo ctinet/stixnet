@@ -13,7 +13,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class Infrastructure : SdoStix
     {
-        public Infrastructure(string objectType = "infrastructure") { ObjectType = objectType;  }
+        public Infrastructure() { ObjectType = "infrastructure";  }
 
         /// <summary>
         /// A name or characterizing text used to identify the Infrastructure.

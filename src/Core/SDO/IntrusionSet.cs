@@ -12,7 +12,7 @@ namespace Cti.Stix.Core.SDO
     /// </summary>
     public class IntrusionSet : SdoStix
     {
-        public IntrusionSet(string objectType = "intrusion-set") { ObjectType = objectType; }
+        public IntrusionSet() { ObjectType = "intrusion-set"; }
 
         /// <summary>
         /// A name used to identify this Intrusion Set.
