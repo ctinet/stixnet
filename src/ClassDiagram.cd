@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cti.Stix.Types.EmailMimeComponentType" Collapsed="true">
+    <Position X="32.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAADAAAAAAABAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Types\EmailMimeComponentType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Types.ExternalReference" Collapsed="true">
+    <Position X="34" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAgAgAAAAAAAAAAACAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Types\ExternalReference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Types.GranularMarking" Collapsed="true">
+    <Position X="27" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEAAAAAAAAAAAAAAAAAAAAAAAABAAAAAgAAAA=</HashCode>
+      <FileName>Types\GranularMarking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Types.KillChainPhase" Collapsed="true">
+    <Position X="34" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABCAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Types\KillChainPhase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Types.WindowsRegistryValueType" Collapsed="true">
+    <Position X="28.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Types\WindowsRegistryValueType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Types.X509V3ExtensionsType" Collapsed="true">
+    <Position X="32.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Types\X509V3ExtensionsType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.Artifact" Collapsed="true">
+    <Position X="12.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAQAAAAAAAAAAAAAAAAACQAAAEAAAQA=</HashCode>
+      <FileName>Core\SCO\Artifact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.AutonomousSystem" Collapsed="true">
+    <Position X="3.75" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAIAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\AutonomousSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.Directory" Collapsed="true">
+    <Position X="10.5" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACACAAAAAIAAAACAAAAACAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\Directory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.DomainName" Collapsed="true">
+    <Position X="3.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAEAAA=</HashCode>
+      <FileName>Core\SCO\DomainName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.EmailAddress" Collapsed="true">
+    <Position X="8.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Core\SCO\EmailAddress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.EmailMessage" Collapsed="true">
+    <Position X="10.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABgAgAAAAAAAAAAIABABAAAAAQAQAFACAwAAEAAAA=</HashCode>
+      <FileName>Core\SCO\EmailMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.File" Collapsed="true">
+    <Position X="15" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAAACACAAAgAQAAAACAAQAAAACEIIAAAgAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\File.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.Ipv4" Collapsed="true">
+    <Position X="6" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAEAAA=</HashCode>
+      <FileName>Core\SCO\Ipv4.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.Ipv6" Collapsed="true">
+    <Position X="10.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAEAAA=</HashCode>
+      <FileName>Core\SCO\Ipv6.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.MacAddress" Collapsed="true">
+    <Position X="15" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Core\SCO\MacAddress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.Mutex" Collapsed="true">
+    <Position X="6" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\Mutex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.NetworkTraffic" Collapsed="true">
+    <Position X="12.75" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIcAAAAAACAEAAAAEAAAAABgACAAABAAAEgAhAAAACA=</HashCode>
+      <FileName>Core\SCO\NetworkTraffic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.HttpRequestExtensions" Collapsed="true">
+    <Position X="30.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\NetworkTraffic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.IcmpExtensions" Collapsed="true">
+    <Position X="32.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\NetworkTraffic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.NetworkSocketExtension" Collapsed="true">
+    <Position X="27" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\NetworkTraffic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.TcpExtensions" Collapsed="true">
+    <Position X="28.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\NetworkTraffic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.Process" Collapsed="true">
+    <Position X="8.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAgAAAAAAAAAgAAAAAACAAAgAAQiAAAAAQgAAAAAEAE=</HashCode>
+      <FileName>Core\SCO\Process.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.WindowsProcessExtension" Collapsed="true">
+    <Position X="27" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\Process.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.WindowsServiceExtension" Collapsed="true">
+    <Position X="30.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\Process.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.Software" Collapsed="true">
+    <Position X="8.25" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAACAAAAAAAAAAAAAQAAAAAEABAAAAAAACAAAA=</HashCode>
+      <FileName>Core\SCO\Software.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.Url" Collapsed="true">
+    <Position X="15" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Core\SCO\Url.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.UserAccount" Collapsed="true">
+    <Position X="6" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AICAEMAAAAAAAAAAAAEAQAgIQAAAAIEAQAgAAAIAAAA=</HashCode>
+      <FileName>Core\SCO\UserAccount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.UNIXAccountExtension" Collapsed="true">
+    <Position X="32.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SCO\UserAccount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.WindowsRegistryKey" Collapsed="true">
+    <Position X="12.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAABAQAAAACAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Core\SCO\WindowsRegistryKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SCO.X509Certificate" Collapsed="true">
+    <Position X="3.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAFAAAAIAAIAAAAAEMAAAAAAAAEAQABgAAAAABAAAAA=</HashCode>
+      <FileName>Core\SCO\X509Certificate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.AttackPattern" Collapsed="true">
+    <Position X="8.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAgAAAAAAEAAAQAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\AttackPattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Campaign" Collapsed="true">
+    <Position X="15" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAgAAAAAAEAAAQAAAAAAAAAAAAgAAAAAAQ=</HashCode>
+      <FileName>Core\SDO\Campaign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.CourseOfAction" Collapsed="true">
+    <Position X="6" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\CourseOfAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Grouping" Collapsed="true">
+    <Position X="10.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAgAAAAAAAAAAQgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\Grouping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Identity" Collapsed="true">
+    <Position X="15" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAACAAEAQAAgAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Core\SDO\Identity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Incident" Collapsed="true">
+    <Position X="3.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\Incident.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Indicator" Collapsed="true">
+    <Position X="8.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAgAAAAAAAAEAYQAAAAAgIAACAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\Indicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Infrastructure" Collapsed="true">
+    <Position X="12.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAEAAAQAAAAAAgAAAAAkAAAAAAQ=</HashCode>
+      <FileName>Core\SDO\Infrastructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.IntrusionSet" Collapsed="true">
+    <Position X="3.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAgAAAAAAEAAAQAAEAAAAAAAAAgAAAAIQQ=</HashCode>
+      <FileName>Core\SDO\IntrusionSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Location" Collapsed="true">
+    <Position X="10.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgEQgAAAIIAAIAAQAAAIAAAAAAAAAAAAAEBA=</HashCode>
+      <FileName>Core\SDO\Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Malware" Collapsed="true">
+    <Position X="3.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIFAAgAAAAAAEAAAQBAAAAAhgAAAAgAEAAAAQ=</HashCode>
+      <FileName>Core\SDO\Malware.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.MalwareAnalysis" Collapsed="true">
+    <Position X="8.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IIACAEAAAAAAAUAAAAAAECQQgAAIgAAAACgAAAABAAA=</HashCode>
+      <FileName>Core\SDO\MalwareAnalysis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Note" Collapsed="true">
+    <Position X="12.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAgAAAAAAAAAAAAAgAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.ObservedData" Collapsed="true">
+    <Position X="15" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAgAAAACCEAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\ObservedData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Opinion" Collapsed="true">
+    <Position X="6" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAgAABAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\Opinion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Report" Collapsed="true">
+    <Position X="10.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAgAAAACAAAAAQgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.ThreatActor" Collapsed="true">
+    <Position X="15" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIACAAAAgAACAAAEAAAQAAgAAABAAAAAgAAAAIYQ=</HashCode>
+      <FileName>Core\SDO\ThreatActor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Tool" Collapsed="true">
+    <Position X="6" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAEAAAQAAAAAAgAAAAAAACAAEAA=</HashCode>
+      <FileName>Core\SDO\Tool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SDO.Vulnerability" Collapsed="true">
+    <Position X="12.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SDO\Vulnerability.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SRO.Relationship" Collapsed="true">
+    <Position X="21.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAABAAgAAAAAAAAAAAAIAEAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Core\SRO\Relationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.SRO.Sighting" Collapsed="true">
+    <Position X="24" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAIQgAAAAAAY=</HashCode>
+      <FileName>Core\SRO\Sighting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Core.ScoStix" Collapsed="true">
+    <Position X="19.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAEAAACAAAAAAAAAAgAQAAAAAA=</HashCode>
+      <FileName>Core\ScoStix.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Cti.Stix.Core.SdoStix" Collapsed="true">
+    <Position X="18.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAIBAEAAACAIAAIAQABAgAQAAAAAA=</HashCode>
+      <FileName>Core\SdoStix.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Cti.Stix.Core.SroStix" Collapsed="true">
+    <Position X="23" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAIBAEAAACAIAAIAQABAgAQAAAAAA=</HashCode>
+      <FileName>Core\SroStix.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Cti.Stix.Internal.Constants" Collapsed="true">
+    <Position X="30.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAIAAAACgABAAAAAAAAAiQiAEAAgAAAQEAA=</HashCode>
+      <FileName>Internal\Constant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Internal.Helpers" Collapsed="true">
+    <Position X="28.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAEAAAgAAAAAAAAAgAAAAAIACAAAAAIBAAA=</HashCode>
+      <FileName>Internal\Helpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Internal.Throws" Collapsed="true">
+    <Position X="30.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQAIAACAAAAAACAAAAAAAQACAgAABAAgg=</HashCode>
+      <FileName>Internal\Throws.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Runtime.CompilerServices.CallerArgumentExpressionAttribute" Collapsed="true">
+    <Position X="28.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Internal\Throws.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Vocabulary" Collapsed="true">
+    <Position X="34" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAgAAhAAAEIAEAFCAAAKAQAIgIEIIEIBAAAmEUkE=</HashCode>
+      <FileName>Internal\Vocabulary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cti.Stix.Bundle" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="27" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAEAAIAAAAAAAAA=</HashCode>
+      <FileName>Bundle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Cti.Stix.Stix" Collapsed="true">
+    <Position X="23" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAiAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Stix.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.362" />
+  </Class>
+  <Class Name="Cti.Stix.Meta.LanguageContentStix" Collapsed="true">
+    <Position X="23" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAIBAEAAQCAIAAIAQAIAgAQABAAAA=</HashCode>
+      <FileName>Meta\LanguageContentStix.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Cti.Stix.Core.IScoStix" Collapsed="true">
+    <Position X="33.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAEAAACAAAAAAAAAAgAQAAAAAA=</HashCode>
+      <FileName>Core\ScoStix.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cti.Stix.Core.ISdoStix" Collapsed="true">
+    <Position X="27" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAIBAEAAACAIAAIAQABAgAQAAAAAA=</HashCode>
+      <FileName>Core\SdoStix.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cti.Stix.Core.ISroStix" Collapsed="true">
+    <Position X="31.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAIBAEAAACAIAAIAQABAgAQAAAAAA=</HashCode>
+      <FileName>Core\SroStix.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cti.Stix.IStixBundle" Collapsed="true">
+    <Position X="29.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Bundle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Cti.Stix.IStix" Collapsed="true">
+    <Position X="30.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Stix.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

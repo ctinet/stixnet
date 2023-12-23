@@ -14,7 +14,8 @@
 		<PackageTags>STIX</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<LangVersion>latest</LangVersion>		
+		<LangVersion>latest</LangVersion>
+		<DocumentationFile>..\stixnet.xml</DocumentationFile>		
 	</PropertyGroup>
 
 	<ItemGroup>

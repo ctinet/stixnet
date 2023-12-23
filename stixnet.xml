@@ -1,0 +1,2718 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>stixnet</name>
+    </assembly>
+    <members>
+        <member name="T:Cti.Stix.IStixBundle">
+            <summary>
+            A Bundle is a collection of arbitrary STIX Objects grouped together in a single container
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.IStixBundle.Objects">
+            <summary>
+            Specifies a set of one or more STIX Objects
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Bundle">
+            <summary>
+            A Bundle is a collection of arbitrary STIX Objects grouped together in a single container. A Bundle does not have any semantic meaning and 
+            the objects contained within the Bundle are not considered related by virtue of being in the same Bundle.
+            
+            A STIX Bundle Object is not a STIX Object but makes use of the type and id Common Properties. A Bundle is transient, and implementations SHOULD 
+            NOT assume that other implementations will treat it as a persistent object or keep any custom properties found on the bundle itself.
+            
+            The JSON MTI serialization uses the JSON Object type [RFC8259] when representing bundle.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Bundle.ObjectType">
+            <summary>
+            The type property identifies the type of object. The value of this property MUST be bundle.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Bundle.ID">
+            <summary>
+            An identifier for this Bundle. The id property for the Bundle is designed to help tools that may need it for processing, 
+            however, tools are not required to store or track it. Tools that consume STIX should not rely on the ability to refer 
+            to bundles by ID.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Bundle.Objects">
+            <summary>
+            Specifies a set of one or more STIX Objects. Objects in this list MUST be a STIX Object.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.IScoStix">
+            <summary>
+            STIX Cyber-observable Objects
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.ScoStix">
+            <summary>
+            STIX Cyber-observable Objects
+            Objects that represent observed facts about a network or host that may be used and related to higher level intelligence to form 
+            a more complete understanding of the threat landscape.
+            
+            STIX Cyber-observable Objects (SCOs) document the facts concerning what happened on a network or host, and do not capture the who, 
+            when, or why. By associating SCOs with STIX Domain Objects (SDOs), it is possible to convey a higher-level understanding of the 
+            threat landscape, and to potentially provide insight as to the who and the why particular intelligence may be relevant to an organization. 
+            For example, information about a file that existed, a process that was observed running, or that network traffic occurred between two IPs 
+            can all be captured as SCOs.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.ScoStix.SpecVersion">
+            <summary>
+            The version of the STIX specification used to represent this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.ScoStix.ObjectMarkingRefs">
+            <summary>
+            The object_marking_refs property specifies a list of id properties of marking-definition objects that apply to this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.ScoStix.GranularMarkings">
+            <summary>
+            The granular_markings property specifies a list of granular markings applied to this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.ScoStix.Defanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.Artifact">
+            <summary>
+            The Artifact object permits capturing an array of bytes (8-bits), as a base64-encoded string, or linking to a file-like payload.
+            One of payload_bin or url MUST be provided. It is incumbent on object creators to ensure that the URL is accessible for downstream consumers.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Artifact.MimeType">
+            <summary>
+            Whenever feasible, this value SHOULD be one of the values defined in the Template column in the IANA media type registry [Media Types]. 
+            Maintaining a comprehensive universal catalog of all extant file types is obviously not possible. When specifying a MIME Type not included 
+            in the IANA registry, implementers should use their best judgement so as to facilitate interoperability.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Artifact.PayloadBin">
+            <summary>
+            Specifies the binary data contained in the artifact as a base64-encoded string.
+            This property MUST NOT be present if url is provided.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Artifact.Url">
+            <summary>
+            The value of this property MUST be a valid URL that resolves to the unencoded content.
+            This property MUST NOT be present if payload_bin is provided.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Artifact.Hashes">
+            <summary>
+            Specifies a dictionary of hashes for the contents of the url or the payload_bin.
+            This property MUST be present when the url property is present.
+            Dictionary keys MUST come from the hash-algorithm-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Artifact.EncryptionAlgorithm">
+            <summary>
+            If the artifact is encrypted, specifies the type of encryption algorithm the binary data  (either via payload_bin or url) is encoded in.
+            The value of this property MUST come from the encryption-algorithm-enum enumeration.
+            If both mime_type and encryption_algorithm are included, this signifies that the artifact represents an encrypted archive.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Artifact.decryption_key">
+            <summary>
+            Specifies the decryption key for the encrypted binary data (either via payload_bin or url). For example, this may be useful in cases of 
+            sharing malware samples, which are often encoded in an encrypted archive.
+            This property MUST NOT be present when the encryption_algorithm property is absent.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.AutonomousSystem">
+            <summary>
+            This object represents the properties of an Autonomous System (AS).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.AutonomousSystem.Number">
+            <summary>
+            Specifies the number assigned to the AS. Such assignments are typically performed by a Regional Internet Registry (RIR).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.AutonomousSystem.Name">
+            <summary>
+            Specifies the name of the AS.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.AutonomousSystem.Rir">
+            <summary>
+            Specifies the name of the Regional Internet Registry (RIR) that assigned the number to the AS.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.Directory">
+            <summary>
+            The Directory object represents the properties common to a file system directory.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Directory.Path">
+            <summary>
+            Specifies the path, as originally observed, to the directory on the file system.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Directory.PathEnc">
+            <summary>
+            Specifies the observed encoding for the path. The value MUST be specified if the path is stored in a non-Unicode encoding. 
+            This value MUST be specified using the corresponding name from the 2013-12-20 revision of the IANA character set registry 
+            [Character Sets]. If the preferred MIME name for a character set is defined, this value MUST be used; if it is not defined, 
+            then the Name value from the registry MUST be used instead.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Directory.CTime">
+            <summary>
+            Specifies the date/time the directory was created.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Directory.MTime">
+            <summary>
+            Specifies the date/time the directory was last written to/modified.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Directory.ATime">
+            <summary>
+            Specifies the date/time the directory was last accessed.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Directory.ContainsRefs">
+            <summary>
+            Specifies a list of references to other File and/or Directory objects contained within the directory.
+            The objects referenced in this list MUST be of type file or directory.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.DomainName">
+            <summary>
+            The Domain Name object represents the properties of a network domain name.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.DomainName.Value">
+            <summary>
+            Specifies the value of the domain name. The value of this property MUST conform to [RFC1034], and each domain 
+            and sub-domain contained within the domain name MUST conform to [RFC5890].
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.DomainName.ResolvesToRefs">
+            <summary>
+            Specifies a list of references to one or more IP addresses or domain names that the domain name resolves to.
+            The objects referenced in this list MUST be of type ipv4-addr or ipv6-addr or domain-name (for cases such as CNAME records).
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.EmailAddress">
+            <summary>
+            The Email Address object represents a single email address.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailAddress.Value">
+            <summary>
+            Specifies the value of the email address. This MUST NOT include the display name.
+            This property corresponds to the addr-spec construction in section 3.4 of[RFC5322], for example, jane.smith @example.com.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailAddress.DisplayName">
+            <summary>
+            Specifies a single email display name, i.e., the name that is displayed to the human user of a mail application.
+            This property corresponds to the display-name construction in section 3.4 of [RFC5322], for example, Jane Smith.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailAddress.BelongsToRef">
+            <summary>
+            Specifies the user account that the email address belongs to, as a reference to a User Account object.
+            The object referenced in this property MUST be of type user-account.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.EmailMessage">
+            <summary>
+            The Email Message object represents an instance of an email message, corresponding to the internet message format described in [RFC5322] and related RFCs.
+            
+            Header field values that have been encoded as described in section 2 of [RFC2047] MUST be decoded before inclusion in Email Message object properties. 
+            For example, this is some text MUST be used instead of =?iso-8859-1?q?this=20is=20some=20text?=. Any characters in the encoded value which cannot be 
+            decoded into Unicode SHOULD be replaced with the 'REPLACEMENT CHARACTER' (U+FFFD). If it is necessary to capture the header value as observed, this 
+            can be achieved by referencing an Artifact object through the raw_email_ref property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.IsMultipart">
+            <summary>
+            Indicates whether the email body contains multiple MIME parts.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.Date">
+            <summary>
+            Specifies the date/time that the email message was sent.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.ContentType">
+            <summary>
+            Specifies the value of the "Content-Type" header of the email message.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.FromRef">
+            <summary>
+            Specifies the value of the "From:" header of the email message. 
+            The "From:" field specifies the author of the message, that is, 
+            the mailbox(es) of the person or system responsible for the writing of the message.
+            
+            The object referenced in this property MUST be of type email-address.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.SenderRef">
+            <summary>
+            Specifies the value of the "Sender" field of the email message. The "Sender:" field specifies 
+            the mailbox of the agent responsible for the actual transmission of the message.
+            
+            The object referenced in this property MUST be of type email-address.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.ToRefs">
+            <summary>
+            Specifies the mailboxes that are "To:" recipients of the email message.
+            
+            The objects referenced in this list MUST be of type email-address.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.CcRefs">
+            <summary>
+            Specifies the mailboxes that are "CC:" recipients of the email message.
+            The objects referenced in this list MUST be of type email-address.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.BccRefs">
+            <summary>
+            Specifies the mailboxes that are "BCC:" recipients of the email message.
+            As per [RFC5322], the absence of this property should not be interpreted as semantically equivalent to an absent BCC header on the message being characterized.
+            The objects referenced in this list MUST be of type email-address.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.MessageId">
+            <summary>
+            Specifies the Message-ID field of the email message.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.Subject">
+            <summary>
+            Specifies the subject of the email message.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.ReceivedLines">
+            <summary>
+            Specifies one or more "Received" header fields that may be included in the email headers.
+            List values MUST appear in the same order as present in the email message.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.AdditionalHeaderFields">
+            <summary>
+            Specifies any other header fields (except for date, received_lines, content_type, from_ref, 
+            sender_ref, to_refs, cc_refs, bcc_refs, and subject) found in the email message, as a dictionary.
+            
+            Each key/value pair in the dictionary represents the name/value of a single header field or names/values 
+            of a header field that occurs more than once. Each dictionary key SHOULD be a case-preserved version of 
+            the header field name. The corresponding value for each dictionary key MUST always be a list of type string 
+            to support when a header field is repeated.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.Body">
+            <summary>
+            Specifies a string containing the email body. This property MUST NOT be used if is_multipart is true.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.BodyMultipart">
+            <summary>
+            Specifies a list of the MIME parts that make up the email body. This property MUST NOT be used if is_multipart is false.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.EmailMessage.RawEmailRef">
+            <summary>
+            Specifies the raw binary contents of the email message, including both the headers and body, as a reference to an Artifact object.
+            The object referenced in this property MUST be of type artifact.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.File">
+            <summary>
+            The File object represents the properties of a file. A File object MUST contain at least one of hashes or name.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.Extensions">
+            <summary>
+            The File object defines the following extensions. In addition to these, producers MAY create their own.
+            ntfs-ext, raster-image-ext, pdf-ext, archive-ext, windows-pebinary-ext
+            
+            Dictionary keys MUST use the specification defined name (examples above) or be the id of a STIX Extension object, depending on the type of extension being used.
+            The corresponding dictionary values MUST contain the contents of the extension instance.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.Hashes">
+            <summary>
+            Specifies a dictionary of hashes for the file.
+            (When used with the Archive File Extension, this refers to the hash of the entire archive file, not its contents.)
+            Dictionary keys MUST come from the hash-algorithm-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.Size">
+            <summary>
+            Specifies the size of the file, in bytes. The value of this property MUST NOT be negative.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.Name">
+            <summary>
+            Specifies the name of the file.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.NameEnc">
+            <summary>
+            Specifies the observed encoding for the name of the file. This value MUST be specified using the corresponding name from the 2013-12-20 revision of the IANA 
+            character set registry [Character Sets]. If the value from the Preferred MIME Name column for a character set is defined, this value MUST be used; if it is 
+            not defined, then the value from the Name column in the registry MUST be used instead.
+            
+            This property allows for the capture of the original text encoding for the file name, which may be forensically relevant; for example, a file on an NTFS volume 
+            whose name was created using the windows-1251 encoding, commonly used for languages based on Cyrillic script.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.MagicNumberHex">
+            <summary>
+            Specifies the hexadecimal constant ("magic number") associated with a specific file format that corresponds to the file, if applicable.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.MimeType">
+            <summary>
+            Specifies the MIME type name specified for the file, e.g., application/msword.
+            Whenever feasible, this value SHOULD be one of the values defined in the Template column in the IANA media type registry [Media Types].
+            
+            Maintaining a comprehensive universal catalog of all extant file types is obviously not possible. When specifying a MIME Type not included 
+            in the IANA registry, implementers should use their best judgement so as to facilitate interoperability.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.CTime">
+            <summary>
+            Specifies the date/time the file was created.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.MTime">
+            <summary>
+            Specifies the date/time the file was last written to/modified.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.ATime">
+            <summary>
+            Specifies the date/time the file was last accessed.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.ParentDirectoryRef">
+            <summary>
+            Specifies the parent directory of the file, as a reference to a Directory object.
+            The object referenced in this property MUST be of type directory.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.ContainsRefs">
+            <summary>
+            Specifies a list of references to other Cyber-observable Objects contained within the 
+            file, such as another file that is appended to the end of the file, or an IP address 
+            that is contained somewhere in the file.
+            This is intended for use cases other than those targeted by the Archive extension.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.File.ContentRef">
+            <summary>
+            Specifies the content of the file, represented as an Artifact object.
+            The object referenced in this property MUST be of type artifact.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.Ipv4">
+            <summary>
+            The IPv4 Address object represents one or more IPv4 addresses expressed using CIDR notation.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Ipv4.Value">
+            <summary>
+            Specifies the values of one or more IPv4 addresses expressed using CIDR notation.
+            If a given IPv4 Address object represents a single IPv4 address, the CIDR /32 suffix MAY be omitted.
+            Example: 10.2.4.5/24
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Ipv4.ResolvesToRefs">
+            <summary>
+            Specifies a list of references to one or more Layer 2 Media Access Control (MAC) addresses that the IPv4 address resolves to.
+            The objects referenced in this list MUST be of type mac-addr.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Ipv4.BelongsToRefs">
+            <summary>
+            Specifies a list of references to one or more autonomous systems (AS) that the IPv4 address belongs to.
+            The objects referenced in this list MUST be of type autonomous-system.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.Ipv6">
+            <summary>
+            The IPv6 Address object represents one or more IPv6 addresses expressed using CIDR notation.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Ipv6.Value">
+            <summary>
+            Specifies the values of one or more IPv6 addresses expressed using CIDR notation.
+            If a given IPv6 Address object represents a single IPv6 address, the CIDR /128 suffix MAY be omitted.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Ipv6.ResolvesToRefs">
+            <summary>
+            Specifies a list of references to one or more Layer 2 Media Access Control (MAC) addresses that the IPv6 address resolves to.
+            The objects referenced in this list MUST be of type mac-addr.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Ipv6.BelongsToRefs">
+            <summary>
+            Specifies a list of references to one or more autonomous systems (AS) that the IPv6 address belongs to.
+            The objects referenced in this list MUST be of type autonomous-system.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.MacAddress">
+            <summary>
+            The MAC Address object represents a single Media Access Control (MAC) address.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.MacAddress.Value">
+            <summary>
+            Specifies the value of a single MAC address.
+            The MAC address value MUST be represented as a single colon-delimited, lowercase MAC-48 address, which MUST include leading zeros for each octet.
+            Example: 00:00:ab:cd:ef:01
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.Mutex">
+            <summary>
+            The Mutex object represents the properties of a mutual exclusion (mutex) object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Mutex.Name">
+            <summary>
+            Specifies the name of the mutex object.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.NetworkTraffic">
+            <summary>
+            The Network Traffic object represents arbitrary network traffic that originates from a source and is addressed to a destination. 
+            The network traffic MAY or MAY NOT constitute a valid unicast, multicast, or broadcast network connection. This MAY also include 
+            traffic that is not established, such as a SYN flood.
+            
+            To allow for use cases where a source or destination address may be sensitive and not suitable for sharing, such as addresses that 
+            are internal to an organization’s network, the source and destination properties (src_ref and dst_ref, respectively) are defined as 
+            optional in the properties table below. However, a Network Traffic object MUST contain the protocols property and at least one of 
+            the src_ref or dst_ref properties and SHOULD contain the src_port and dst_port properties.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.Extensions">
+            <summary>
+            The Network Traffic object defines the following extensions. In addition to these, producers MAY create their own.
+            http-request-ext, tcp-ext, icmp-ext, socket-ext
+            
+            Dictionary keys MUST use the specification defined name (examples above) or be the id of a STIX Extension object, depending on the type of extension being used.
+            
+            The corresponding dictionary values MUST contain the contents of the extension instance.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.Start">
+            <summary>
+            Specifies the date/time the network traffic was initiated, if known.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.End">
+            <summary>
+            Specifies the date/time the network traffic ended, if known.
+            If the is_active property is true, then the end property MUST NOT be included.
+            If this property and the start property are both defined, then this property MUST be greater than or equal to the timestamp in the start property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.IsActive">
+            <summary>
+            Indicates whether the network traffic is still ongoing.
+            If the end property is provided, this property MUST be false.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.SrcRef">
+            <summary>
+            Specifies the source of the network traffic, as a reference to a Cyber-observable Object.
+            The object referenced MUST be of type ipv4-addr, ipv6-addr, mac-addr, or domain-name (for cases where the IP address for a domain name is unknown).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.DstRef">
+            <summary>
+            Specifies the destination of the network traffic, as a reference to a Cyber-observable Object.
+            The object referenced MUST be of type ipv4-addr, ipv6-addr, mac-addr, or domain-name (for cases where the IP address for a domain name is unknown).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.SrcPort">
+            <summary>
+            Specifies the source port used in the network traffic, as an integer. The port value MUST be in the range of 0 - 65535.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.DstPort">
+            <summary>
+            Specifies the destination port used in the network traffic, as an integer. The port value MUST be in the range of 0 - 65535.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.Protocols">
+            <summary>
+            Specifies the protocols observed in the network traffic, along with their corresponding state.
+            Protocols MUST be listed in low to high order, from outer to inner in terms of packet encapsulation. That is, the protocols in the outer level of the 
+            packet, such as IP, MUST be listed first.
+            The protocol names SHOULD come from the service names defined in the Service Name column of the IANA Service Name and Port Number Registry [Port Numbers]. 
+            In cases where there is variance in the name of a network protocol not included in the IANA Registry, content producers should exercise their best judgement, 
+            and it is recommended that lowercase names be used for consistency with the IANA registry.
+            
+            If the protocol extension is present, the corresponding protocol value for that extension SHOULD be listed in this property.
+            Examples:
+            ipv4, tcp, http
+            ipv4, udp
+            ipv6, tcp, http
+            ipv6, tcp, ssl, https
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.SrcByteCount">
+            <summary>
+            Specifies the number of bytes, as a positive integer, sent from the source to the destination.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.DstByteCount">
+            <summary>
+            Specifies the number of bytes, as a positive integer, sent from the destination to the source.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.SrcPackets">
+            <summary>
+            Specifies the number of packets, as a positive integer, sent from the source to the destination.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.DstPackets">
+            <summary>
+            Specifies the number of packets, as a positive integer, sent from the destination to the source.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.Ipfix">
+            <summary>
+            Specifies any IP Flow Information Export [IPFIX] data for the traffic, as a dictionary. Each key/value 
+            pair in the dictionary represents the name/value of a single IPFIX element. Accordingly, each dictionary 
+            key SHOULD be a case-preserved version of the IPFIX element name, e.g., octetDeltaCount. Each dictionary 
+            value MUST be either an integer or a string, as well as a valid IPFIX property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.SrcPayloadRef">
+            <summary>
+            Specifies the bytes sent from the source to the destination.
+            The object referenced in this property MUST be of type artifact.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.DstPayloadRef">
+            <summary>
+            Specifies the bytes sent from the destination to the source.
+            The object referenced in this property MUST be of type artifact.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.EncapsulatesRefs">
+            <summary>
+            Links to other network-traffic objects encapsulated by this network-traffic object.
+            The objects referenced in this property MUST be of type network-traffic.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.NetworkTraffic.EncapsulatedByRef">
+            <summary>
+            Links to another network-traffic object which encapsulates this object.
+            The object referenced in this property MUST be of type network-traffic.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.HttpRequestExtensions">
+            <summary>
+            The HTTP request extension specifies a default extension for capturing network traffic properties specific to HTTP requests. The key for this extension 
+            when used in the extensions dictionary MUST be http-request-ext. Note that this predefined extension does not use the extension facility described in 
+            section 7.3. The corresponding protocol value for this extension is http.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.IcmpExtensions">
+            <summary>
+            The ICMP extension specifies a default extension for capturing network traffic properties specific to ICMP. The key for this extension when used in the extensions dictionary MUST 
+            be icmp-ext. Note that this predefined extension does not use the extension facility described in section 7.3. The corresponding protocol value for this extension is icmp.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.NetworkSocketExtension">
+            <summary>
+            The Network Socket extension specifies a default extension for capturing network traffic properties associated with network sockets. The key for this extension when used in the 
+            extensions dictionary MUST be socket-ext. Note that this predefined extension does not use the extension facility described in section 7.3.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.TcpExtensions">
+            <summary>
+            The TCP extension specifies a default extension for capturing network traffic properties specific to TCP. The key for this extension when used in the extensions dictionary MUST be tcp-ext. 
+            Note that this predefined extension does not use the extension facility described in section 7.3. The corresponding protocol value for this extension is tcp.
+            An object using the TCP Extension MUST contain at least one property from this extension.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.Process">
+            <summary>
+            The Process object represents common properties of an instance of a computer program as executed on an operating system. 
+            A Process object MUST contain at least one property (other than type) from this object (or one of its extensions).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.Extensions">
+            <summary>
+            The Process object defines the following extensions. In addition to these, producers MAY create their own.
+            windows-process-ext, windows-service-ext
+            Dictionary keys MUST use the specification defined name (examples above) or be the id of a STIX Extension object, depending on the type of extension being used.
+            The corresponding dictionary values MUST contain the contents of the extension instance.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.IsHidden">
+            <summary>
+            Specifies whether the process is hidden.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.Pid">
+            <summary>
+            Specifies the Process ID, or PID, of the process.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.CreatedTime">
+            <summary>
+            Specifies the date/time at which the process was created.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.Cwd">
+            <summary>
+            Specifies the current working directory of the process.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.CommandLine">
+            <summary>
+            Specifies the full command line used in executing the process, including the process name (which may be specified individually via the image_ref.name property) and any arguments.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.EnvironmentVariables">
+            <summary>
+            Specifies the list of environment variables associated with the process as a dictionary. Each key in the dictionary MUST be a case preserved version of the name of 
+            the environment variable, and each corresponding value MUST be the environment variable value as a string.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.OpenedConnectionRefs">
+            <summary>
+            Specifies the list of network connections opened by the process, as a reference to one or more Network Traffic objects.
+            The objects referenced in this list MUST be of type network-traffic.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.CreatorUserRef">
+            <summary>
+            Specifies the user that created the process, as a reference to a User Account object.
+            The object referenced in this property MUST be of type user-account.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.ImageRef">
+            <summary>
+            Specifies the executable binary that was executed as the process image, as a reference to a File object.
+            The object referenced in this property MUST be of type file.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.ParentRef">
+            <summary>
+            Specifies the other process that spawned (i.e. is the parent of) this one, as a reference to a Process object.
+            The object referenced in this property MUST be of type process.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Process.ChildRefs">
+            <summary>
+            Specifies the other processes that were spawned by (i.e. children of) this process, as a reference to one or more other Process objects.
+            The objects referenced in this list MUST be of type process.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.WindowsProcessExtension">
+            <summary>
+            The Windows Process extension specifies a default extension for capturing properties specific to Windows processes. The key for this extension 
+            when used in the extensions dictionary MUST be windows-process-ext. Note that this predefined extension does not use the extension facility 
+            described in section 7.3. An object using the Windows Process Extension MUST contain at least one property from this extension.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.WindowsServiceExtension">
+            <summary>
+            The Windows Service extension specifies a default extension for capturing properties specific to Windows services. The key for this 
+            extension when used in the extensions dictionary MUST be windows-service-ext. Note that this predefined extension does not use the 
+            extension facility described in section 7.3.
+            As all properties of this extension are optional, at least one of the properties defined below MUST be included when using this extension.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.Software">
+            <summary>
+            The Software object represents high-level properties associated with software, including software products.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Software.Name">
+            <summary>
+            Specifies the name of the software.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Software.Cpe">
+            <summary>
+            Specifies the Common Platform Enumeration (CPE) entry for the software, if available. The value for this 
+            property MUST be a CPE v2.3 entry from the official NVD CPE Dictionary [NVD] .
+            While the CPE dictionary does not contain entries for all software, whenever it does contain an identifier 
+            for a given instance of software, this property SHOULD be present.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Software.Swid">
+            <summary>
+            Specifies the Software Identification (SWID) Tags [SWID] entry for the software, if available. The tag attribute, 
+            tagId, a globally unique identifier, SHOULD be used as a proxy identifier of the tagged product.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Software.Languages">
+            <summary>
+            Specifies the languages supported by the software. The value of each list member MUST be a language code conformant to [RFC5646].
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Software.Vendor">
+            <summary>
+            Specifies the name of the vendor of the software.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Software.Version">
+            <summary>
+            Specifies the version of the software.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.Url">
+            <summary>
+            The URL object represents the properties of a uniform resource locator (URL).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.Url.Value">
+            <summary>
+            Specifies the value of the URL. The value of this property MUST conform to [RFC3986], 
+            more specifically section 1.1.3 with reference to the definition for "Uniform Resource Locator".
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.UserAccount">
+            <summary>
+            The User Account object represents an instance of any type of user account, including but not 
+            limited to operating system, device, messaging service, and social media platform accounts. 
+            As all properties of this object are optional, at least one of the properties defined below 
+            MUST be included when using this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.Extensions">
+            <summary>
+            The User Account object defines the following extensions. In addition to these, producers MAY create their own.
+            unix-account-ext
+            Dictionary keys MUST use the specification defined name (examples above) or be the id of a STIX Extension object, 
+            depending on the type of extension being used.
+            The corresponding dictionary values MUST contain the contents of the extension instance.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.UserId">
+            <summary>
+            Specifies the identifier of the account. The format of the identifier depends on the system 
+            the user account is maintained in, and may be a numeric ID, a GUID, an account name, 
+            an email address, etc. The user_id property should be populated with whatever field is the 
+            unique identifier for the system the account is a member of. For example, on UNIX systems 
+            it would be populated with the UID.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.Credential">
+            <summary>
+            Specifies a cleartext credential. This is only intended to be used in capturing metadata from 
+            malware analysis (e.g., a hard-coded domain administrator password that the malware attempts 
+            to use for lateral movement) and SHOULD NOT be used for sharing of PII.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.AccountLogin">
+            <summary>
+            Specifies the account login string, used in cases where the user_id property specifies something 
+            other than what a user would type when they login.
+            For example, in the case of a Unix account with user_id 0, the account_login might be "root".
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.AccountType">
+            <summary>
+            Specifies the type of the account.
+            This is an open vocabulary and values SHOULD come from the account-type-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.DisplayName">
+            <summary>
+            Specifies the display name of the account, to be shown in user interfaces, if applicable.
+            On Unix, this is equivalent to the GECOS field.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.IsServiceAccount">
+            <summary>
+            Indicates that the account is associated with a network service or system process (daemon), not a specific individual.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.IsPrivileged">
+            <summary>
+            Specifies that the account has elevated privileges (i.e., in the case of root on Unix or the Windows Administrator account).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.CanEscalatePrivs">
+            <summary>
+            Specifies that the account has the ability to escalate privileges (i.e., in the case of sudo on Unix or a Windows Domain Admin account)
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.IsDisabled">
+            <summary>
+            Specifies if the account is disabled.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.AccountCreated">
+            <summary>
+            Specifies when the account was created.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.AccountExpires">
+            <summary>
+            Specifies the expiration date of the account.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.CredentialLastChanged">
+            <summary>
+            Specifies when the account credential was last changed.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.AccountFirstLogin">
+            <summary>
+            Specifies when the account was first accessed.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.UserAccount.AccountLastLogin">
+            <summary>
+            Specifies when the account was last accessed.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.UNIXAccountExtension">
+            <summary>
+            The UNIX account extension specifies a default extension for capturing the additional information 
+            for an account on a UNIX system. The key for this extension when used in the extensions dictionary 
+            MUST be unix-account-ext. Note that this predefined extension does not use the extension facility 
+            described in section 7.3.
+            An object using the UNIX Account Extension MUST contain at least one property from this extension.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.WindowsRegistryKey">
+            <summary>
+            The Registry Key object represents the properties of a Windows registry key. As all properties of 
+            this object are optional, at least one of the properties defined below MUST be included when using 
+            this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.WindowsRegistryKey.Key">
+            <summary>
+            Specifies the full registry key including the hive.
+            The value of the key, including the hive portion, SHOULD be case-preserved. The hive portion of 
+            the key MUST be fully expanded and not truncated; e.g., HKEY_LOCAL_MACHINE must be used instead 
+            of HKLM.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.WindowsRegistryKey.Values">
+            <summary>
+            Specifies the values found under the registry key.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.WindowsRegistryKey.ModifiedTime">
+            <summary>
+            Specifies the last date/time that the registry key was modified.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.WindowsRegistryKey.CreatorUserRef">
+            <summary>
+            Specifies a reference to the user account that created the registry key.
+            The object referenced in this property MUST be of type user-account.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.WindowsRegistryKey.NumberOfSubkeys">
+            <summary>
+            Specifies the number of subkeys contained under the registry key.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SCO.X509Certificate">
+            <summary>
+            The X.509 Certificate object represents the properties of an X.509 certificate, as defined by ITU 
+            recommendation X.509 [X.509]. An X.509 Certificate object MUST contain at least one object specific 
+            property (other than type) from this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.IsSelfSigned">
+            <summary>
+            Specifies whether the certificate is self-signed, i.e., whether it is signed by the same entity whose identity it certifies.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.Hashes">
+            <summary>
+            Specifies any hashes that were calculated for the entire contents of the certificate.
+            Dictionary keys MUST come from the hash-algorithm-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.Version">
+            <summary>
+            Specifies the version of the encoded certificate.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.SerialNumber">
+            <summary>
+            Specifies the unique identifier for the certificate, as issued by a specific Certificate Authority.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.SignatureAlgorithm">
+            <summary>
+            Specifies the name of the algorithm used to sign the certificate.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.Issuer">
+            <summary>
+            Specifies the name of the Certificate Authority that issued the certificate.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.ValidityNotBefore">
+            <summary>
+            Specifies the date on which the certificate validity period begins.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.ValidityNotAfter">
+            <summary>
+            Specifies the date on which the certificate validity period ends.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.Subject">
+            <summary>
+            Specifies the name of the entity associated with the public key stored in the subject public key field of the certificate.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.SubjectPublicKeyAlgorithm">
+            <summary>
+            Specifies the name of the algorithm with which to encrypt data being sent to the subject.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.SubjectPublicKeyModulus">
+            <summary>
+            Specifies the modulus portion of the subject’s public RSA key.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.SubjectPublicKeyExponent">
+            <summary>
+            Specifies the exponent portion of the subject’s public RSA key, as an integer.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SCO.X509Certificate.X509V3Extensions">
+            <summary>
+            Specifies any standard X.509 v3 extensions that may be used in the certificate.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.ISdoStix">
+            <summary>
+            STIX Domain Objects
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SdoStix">
+            <summary>
+            STIX Domain Objects
+            Higher Level Intelligence Objects that represent behaviors and constructs that threat analysts would typically create 
+            or work with while understanding the threat landscape.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.SpecVersion">
+            <summary>
+            The version of the STIX specification used to represent this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.CreatedByRef">
+            <summary>
+            The created_by_ref property specifies the id property of the identity object that describes the entity that created this object.
+            
+            related-to
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.Created">
+            <summary>
+            The created property represents the time at which the object was originally created.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.Modified">
+            <summary>
+            The modified property is only used by STIX Objects that support versioning and represents the time that this particular version 
+            of the object was last modified.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.Revoked">
+            <summary>
+            The revoked property is only used by STIX Objects that support versioning and indicates whether the object has been revoked.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.Labels">
+            <summary>
+            The labels property specifies a set of terms used to describe this object. The terms are user-defined or trust-group defined and 
+            their meaning is outside the scope of this specification and MAY be ignored.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.Confidence">
+            <summary>
+            The confidence property identifies the confidence that the creator has in the correctness of their data. The confidence value MUST
+            be a number in the range of 0-100.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.Lang">
+            <summary>
+            The lang property identifies the language of the text content in this object. When present, it MUST be a language code conformant 
+            to [RFC5646]. If the property is not present, then the language of the content is en (English).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.ExternalReferences">
+            <summary>
+            The external_references property specifies a list of external references which refers to non-STIX information. This property is 
+            used to provide one or more URLs, descriptions, or IDs to records in other systems.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.ObjectMarkingRefs">
+            <summary>
+            The object_marking_refs property specifies a list of id properties of marking-definition objects that apply to this object.
+            
+            related-to
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.GranularMarkings">
+            <summary>
+            The granular_markings property specifies a list of granular markings applied to this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SdoStix.Extensions">
+            <summary>
+            Specifies any extensions of the object, as a dictionary.
+            Dictionary keys SHOULD be the id of a STIX Extension object or the name of a predefined object extension found in this specification, 
+            depending on the type of extension being used.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.AttackPattern">
+            <summary>
+            Attack Patterns are a type of TTP that describe ways that adversaries attempt to compromise targets. Attack Patterns are used to help 
+            categorize attacks, generalize specific attacks to the patterns that they follow, and provide detailed information about how attacks 
+            are performed. An example of an attack pattern is "spear phishing": a common type of attack where an attacker sends a carefully 
+            crafted e-mail message to a party with the intent of getting them to click a link or open an attachment to deliver malware. 
+            Attack Patterns can also be more specific; spear phishing as practiced by a particular threat actor (e.g., they might generally say
+            that the target won a contest) can also be an Attack Pattern.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.AttackPattern.Name">
+            <summary>
+            A name used to identify the Attack Pattern.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.AttackPattern.Description">
+            <summary>
+            A description that provides more details and context about the Attack Pattern, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.AttackPattern.Aliases">
+            <summary>
+            Alternative names used to identify this Attack Pattern.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.AttackPattern.KillChainPhases">
+            <summary>
+            The list of Kill Chain Phases for which this Attack Pattern is used.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.AttackPattern.ExternalReferences">
+            <summary>
+            A list of external references which refer to non-STIX information. This property MAY be used to provide one or more Attack Pattern identifiers, 
+            such as a CAPEC ID. When specifying a CAPEC ID, the source_name property of the external reference MUST be set to capec and the external_id 
+            property MUST be formatted as CAPEC-[id].
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Campaign">
+            <summary>
+            A Campaign is a grouping of adversarial behaviors that describes a set of malicious activities or attacks (sometimes called waves) that occur 
+            over a period of time against a specific set of targets. Campaigns usually have well defined objectives and may be part of an Intrusion Set.
+            
+            Campaigns are often attributed to an intrusion set and threat actors. The threat actors may reuse known infrastructure from the intrusion set 
+            or may set up new infrastructure specific for conducting that campaign.
+            
+            Campaigns can be characterized by their objectives and the incidents they cause, people or resources they target, and the resources 
+            (infrastructure, intelligence, Malware, Tools, etc.) they use.
+            
+            For example, a Campaign could be used to describe a crime syndicate's attack using a specific variant of malware and new C2 servers against the 
+            executives of ACME Bank during the summer of 2016 in order to gain secret information about an upcoming merger with another bank.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Campaign.Name">
+            <summary>
+            A name used to identify the Campaign.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Campaign.Description">
+            <summary>
+            A description that provides more details and context about the Campaign, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Campaign.Aliases">
+            <summary>
+            Alternative names used to identify this Campaign
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Campaign.FirstSeen">
+            <summary>
+            The time that this Campaign was first seen.
+            A summary property of data from sightings and other data that may or may not be available in STIX.If new sightings are received that are earlier 
+            than the first seen timestamp, the object may be updated to account for the new data.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Campaign.LastSeen">
+            <summary>
+            The time that this Campaign was last seen.
+            A summary property of data from sightings and other data that may or may not be available in STIX.If new sightings are received that are later than the last 
+            seen timestamp, the object may be updated to account for the new data.
+            If this property and the first_seen property are both defined, then this property MUST be greater than or equal to the timestamp in the first_seen property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Campaign.Objective">
+            <summary>
+            The Campaign’s primary goal, objective, desired outcome, or intended effect — what the Threat Actor or Intrusion Set hopes to accomplish with this Campaign.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.CourseOfAction">
+            <summary>
+            The Course of Action object in STIX 2.1 is a stub. It is included to support basic use cases (such as sharing prose courses of action) but does not support 
+            the ability to represent automated courses of action or contain properties to represent metadata about courses of action. Future STIX 2 releases will expand 
+            it to include these capabilities.
+            
+            A Course of Action is an action taken either to prevent an attack or to respond to an attack that is in progress. It may describe technical, automatable responses 
+            (applying patches, reconfiguring firewalls) but can also describe higher level actions like employee training or policy changes. 
+            For example, a course of action to mitigate a vulnerability could describe applying the patch that fixes it.
+            
+            The Course of Action SDO contains a textual description of the action; a reserved action property also serves as a placeholder for future inclusion of machine 
+            automatable courses of action.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.CourseOfAction.Name">
+            <summary>
+            A name used to identify the Course of Action.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.CourseOfAction.Description">
+            <summary>
+            A description that provides more details and context about the Course of Action, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Grouping">
+            <summary>
+            A Grouping object explicitly asserts that the referenced STIX Objects have a shared context, unlike a STIX Bundle (which explicitly conveys no context).
+            A Grouping object should not be confused with an intelligence product, which should be conveyed via a STIX Report.
+            
+            A STIX Grouping object might represent a set of data that, in time, given sufficient analysis, would mature to convey an incident or threat report as a 
+            STIX Report object. For example, a Grouping could be used to characterize an ongoing investigation into a security event or incident. A Grouping object 
+            could also be used to assert that the referenced STIX Objects are related to an ongoing analysis process, such as when a threat analyst is collaborating 
+            with others in their trust community to examine a series of Campaigns and Indicators. The Grouping SDO contains a list of references to SDOs, SCOs, SROs, 
+            and SMOs, along with an explicit statement of the context shared by the content, a textual description, and the name of the grouping.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Grouping.Name">
+            <summary>
+            A name used to identify the Grouping.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Grouping.Description">
+            <summary>
+            A description that provides more details and context about the Grouping, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Grouping.Context">
+            <summary>
+            A short descriptor of the particular context shared by the content referenced by the Grouping.
+            The value for this property SHOULD come from the grouping-context-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Grouping.ObjectRefs">
+            <summary>
+            Specifies the STIX Objects that are referred to by this Grouping.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Identity">
+            <summary>
+            Identities can represent actual individuals, organizations, or groups (e.g., ACME, Inc.) as well as classes of individuals, 
+            organizations, systems or groups (e.g., the finance sector).
+            
+            The Identity SDO can capture basic identifying information, contact information, and the sectors that the Identity belongs 
+            to. Identity is used in STIX to represent, among other things, targets of attacks, information sources, object creators, 
+            and threat actor identities.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Identity.Name">
+            <summary>
+            The name of this Identity. When referring to a specific entity (e.g., an individual or organization), 
+            this property SHOULD contain the canonical name of the specific entity.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Identity.Description">
+            <summary>
+            A description that provides more details and context about the Identity, potentially including its purpose and its key 
+            characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Identity.Roles">
+            <summary>
+            The list of roles that this Identity performs (e.g., CEO, Domain Administrators, Doctors, Hospital, or Retailer). 
+            No open vocabulary is yet defined for this property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Identity.IdentityClass">
+            <summary>
+            The type of entity that this Identity describes, e.g., an individual or organization.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Identity.Sectors">
+            <summary>
+            The list of industry sectors that this Identity belongs to.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Identity.ContactInformation">
+            <summary>
+            The contact information (e-mail, phone number, etc.) for this Identity. No format for this information is currently defined 
+            by this specification.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Incident">
+            <summary>
+            The Incident object in STIX 2.1 is a stub. It is included to support basic use cases but does not contain properties to 
+            represent metadata about incidents. Future STIX 2 releases will expand it to include these capabilities.  It is suggested 
+            that it is used as an extension point for an Incident object defined using the extension facility described in section 7.3.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Incident.Name">
+            <summary>
+            A name used to identify the Incident.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Incident.Description">
+            <summary>
+            A description that provides more details and context about the Incident, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Indicator">
+            <summary>
+            Indicators contain a pattern that can be used to detect suspicious or malicious cyber activity. For example, an Indicator may be used to 
+            represent a set of malicious domains and use the STIX Patterning Language (see section 9) to specify these domains.
+            
+            The Indicator SDO contains a simple textual description, the Kill Chain Phases that it detects behavior in, a time window for when the 
+            Indicator is valid or useful, and a required pattern property to capture a structured detection pattern. Conforming STIX implementations 
+            MUST support the STIX Patterning Language as defined in section 9.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.Name">
+            <summary>
+            A name used to identify the Indicator.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.Description">
+            <summary>
+            A description that provides more details and context about the Indicator, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.IndicatorTypes">
+            <summary>
+            A name used to identify the Indicator.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.Pattern">
+            <summary>
+            The detection pattern for this Indicator MAY be expressed as a STIX Pattern as specified in section 9 or another appropriate language such as SNORT, YARA, etc.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.PatternType">
+            <summary>
+            The pattern language used in this indicator.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.PatternVersion">
+            <summary>
+            The version of the pattern language that is used for the data in the pattern property which MUST match the type of pattern data included in the pattern property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.ValidFrom">
+            <summary>
+            The time from which this Indicator is considered a valid indicator of the behaviors it is related or represents.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.ValidUntil">
+            <summary>
+            The time at which this Indicator should no longer be considered a valid indicator of the behaviors it is related to or represents.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Indicator.KillChainPhases">
+            <summary>
+            The kill chain phase(s) to which this Indicator corresponds.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Infrastructure">
+            <summary>
+            The Infrastructure SDO represents a type of TTP and describes any systems, software services and any associated physical or 
+            virtual resources intended to support some purpose (e.g., C2 servers used as part of an attack, device or server that are 
+            part of defense, database servers targeted by an attack, etc.). While elements of an attack can be represented by other 
+            SDOs or SCOs, the Infrastructure SDO represents a named group of related data that constitutes the infrastructure.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Infrastructure.Name">
+            <summary>
+            A name or characterizing text used to identify the Infrastructure.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Infrastructure.Description">
+            <summary>
+            A description that provides more details and context about the Infrastructure, potentially including its purpose, how it 
+            is being used, how it relates to other intelligence activities captured in related objects, and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Infrastructure.InfrastructureTypes">
+            <summary>
+            The type of infrastructure being described.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Infrastructure.Aliases">
+            <summary>
+            Alternative names used to identify this Infrastructure.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Infrastructure.KillChainPhases">
+            <summary>
+            The list of Kill Chain Phases for which this Infrastructure is used.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Infrastructure.FirstSeen">
+            <summary>
+            The time that this Infrastructure was first seen performing malicious activities.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Infrastructure.LastSeen">
+            <summary>
+            The time that this Infrastructure was last seen performing malicious activities.
+            If this property and the first_seen property are both defined, then this property MUST be greater than or equal to the timestamp in the first_seen property.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.IntrusionSet">
+            <summary>
+            An Intrusion Set is a grouped set of adversarial behaviors and resources with common properties that is believed to be orchestrated by a 
+            single organization. An Intrusion Set may capture multiple Campaigns or other activities that are all tied together by shared attributes 
+            indicating a commonly known or unknown Threat Actor. New activity can be attributed to an Intrusion Set even if the Threat Actors behind 
+            the attack are not known. Threat Actors can move from supporting one Intrusion Set to supporting another, or they may support multiple Intrusion Sets.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.Name">
+            <summary>
+            A name used to identify this Intrusion Set.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.Description">
+            <summary>
+            A description that provides more details and context about the Intrusion Set, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.Aliases">
+            <summary>
+            Alternative names used to identify this Intrusion Set.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.FirstSeen">
+            <summary>
+            The time that this Intrusion Set was first seen.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.LastSeen">
+            <summary>
+            The time that this Intrusion Set was last seen.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.Goals">
+            <summary>
+            The high-level goals of this Intrusion Set, namely, what are they trying to do. For example, they may be motivated by personal gain, but their 
+            goal is to steal credit card numbers. To do this, they may execute specific Campaigns that have detailed objectives like compromising point of 
+            sale systems at a large retailer.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.ResourceLevel">
+            <summary>
+            This property specifies the organizational level at which this Intrusion Set typically works, which in turn determines the resources available 
+            to this Intrusion Set for use in an attack.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.PrimaryMotivation">
+            <summary>
+            The primary reason, motivation, or purpose behind this Intrusion Set. The motivation is why the Intrusion Set wishes to achieve the goal (what 
+            they are trying to achieve).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.IntrusionSet.SecondaryMotivation">
+            <summary>
+            The secondary reasons, motivations, or purposes behind this Intrusion Set. These motivations can exist as an equal or near-equal cause to the 
+            primary motivation. However, it does not replace or necessarily magnify the primary motivation, but it might indicate additional context. The 
+            position in the list has no significance.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Location">
+            <summary>
+            A Location represents a geographic location. The location may be described as any, some or all of the following: 
+            region (e.g., North America), civic address (e.g. New York, US), latitude and longitude.
+            
+            At least one of the following properties/sets of properties MUST be provided:
+                - region
+                - country
+                - latitude and longitude
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.Name">
+            <summary>
+            A name used to identify the Location.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.Description">
+            <summary>
+            A textual description of the Location.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.Latitude">
+            <summary>
+            The latitude of the Location in decimal degrees. Positive numbers describe latitudes north of the equator, and negative 
+            numbers describe latitudes south of the equator. The value of this property MUST be between -90.0 and 90.0, inclusive.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.Longitude">
+            <summary>
+            The longitude of the Location in decimal degrees. Positive numbers describe longitudes east of the prime meridian and 
+            negative numbers describe longitudes west of the prime meridian. The value of this property MUST be between -180.0 and 180.0, inclusive.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.Precision">
+            <summary>
+            Defines the precision of the coordinates specified by the latitude and longitude properties. This is measured in meters. 
+            The actual Location may be anywhere up to precision meters from the defined point.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.Region">
+            <summary>
+            The region that this Location describes.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.Country">
+            <summary>
+            The country that this Location describes
+            This property SHOULD contain a valid ISO 3166-1 ALPHA-2 Code
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.AdministrativeArea">
+            <summary>
+            The state, province, or other sub-national administrative area that this Location describes.
+            This property SHOULD contain a valid ISO 3166-2 Code
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.City">
+            <summary>
+            The city that this Location describes.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.StreetAddress">
+            <summary>
+            The street address that this Location describes. This property includes all aspects or parts of the street address. 
+            For example, some addresses may have multiple lines including a mailstop or apartment number.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Location.PostalCode">
+            <summary>
+            The postal code for this Location.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Malware">
+            <summary>
+            Malware is a type of TTP that represents malicious code. It generally refers to a program that is inserted into a 
+            system, usually covertly. The intent is to compromise the confidentiality, integrity, or availability of the victim's 
+            data, applications, or operating system (OS) or otherwise annoy or disrupt the victim.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.Name">
+            <summary>
+            A name used to identify the malware instance or family, as specified by the producer of the SDO. For a malware family the name MUST 
+            be defined. If a name for a malware instance is not available, the SHA-256 hash value or sample’s filename MAY be used instead.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.Description">
+            <summary>
+            A description that provides more details and context about the malware instance or family, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.MalwareTypes">
+            <summary>
+            A set of categorizations for the malware being described.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.IsFamily">
+            <summary>
+            Whether the object represents a malware family (if true) or a malware instance (if false).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.Aliases">
+            <summary>
+            Alternative names used to identify this malware or malware family.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.KillChainPhases">
+            <summary>
+            The list of Kill Chain Phases for which this malware can be used.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.FirstSeen">
+            <summary>
+            The time that the malware instance or family was first seen.
+            This property is a summary property of data from sightings and other data that may or may not be available in STIX. 
+            If new sightings are received that are earlier than the first seen timestamp, the object may be updated to account for the new data.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.LastSeen">
+            <summary>
+            The time that the malware family or malware instance was last seen.
+            This property is a summary property of data from sightings and other data that may or may not be available in STIX. If new sightings 
+            are received that are later than the last_seen timestamp, the object may be updated to account for the new data.
+            If this property and the first_seen property are both defined, then this property MUST be greater than or equal to the timestamp in the first_seen property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.OperatingSystemRefs">
+            <summary>
+            The operating systems that the malware family or malware instance is executable on. This applies to virtualized operating systems as 
+            well as those running on bare metal.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.ArchitectureExecutionEnvs">
+            <summary>
+            The processor architectures (e.g., x86, ARM, etc.) that the malware instance or family is executable on.
+            The values for this property SHOULD come from the processor-architecture-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.ImplementationLanguages">
+            <summary>
+            The programming language(s) used to implement the malware instance or family.
+            The values for this property SHOULD come from the implementation-language-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.Capabilities">
+            <summary>
+            Any of the capabilities identified for the malware instance or family.
+            The values for this property SHOULD come from the malware-capabilities-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Malware.SampleRefs">
+            <summary>
+            The sample_refs property specifies a list of identifiers of the SCO file or artifact objects associated with this malware instance(s) or family.
+            If is_family is false, then all samples listed in sample_refs MUST refer to the same binary data.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.MalwareAnalysis">
+            <summary>
+            Malware Analysis captures the metadata and results of a particular static or dynamic analysis performed on a malware instance or family. 
+            One of result or analysis_sco_refs properties MUST be provided.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.Product">
+            <summary>
+            The name of the analysis engine or product that was used. Product names SHOULD be all lowercase with words separated by a dash "-".
+            For cases where the name of a product cannot be specified, a value of "anonymized" MUST be used.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.Version">
+            <summary>
+            The version of the analysis product that was used to perform the analysis.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.HostVmRef">
+            <summary>
+            A description of the virtual machine environment used to host the guest operating system (if applicable) that was used for the dynamic 
+            analysis of the malware instance or family.
+            
+            If this value is not included in conjunction with the operating_system_ref property, this means that the dynamic analysis may have been 
+            performed on bare metal (i.e. without virtualization) or the information was redacted.
+            
+            The value of this property MUST be the identifier for a SCO software object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.OperatingSystemRef">
+            <summary>
+            The operating system used for the dynamic analysis of the malware instance or family. This applies to virtualized operating systems as 
+            well as those running on bare metal.
+            
+            The value of this property MUST be the identifier for a SCO software object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.InstalledSoftwareRefs">
+            <summary>
+            Any non-standard software installed on the operating system (specified through the operating-system value) used for the dynamic analysis 
+            of the malware instance or family.
+            
+            The value of this property MUST be the identifier for a SCO software object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.ConfigurationVersion">
+            <summary>
+            The named configuration of additional product configuration parameters for this analysis run.
+            
+            For example, when a product is configured to do full depth analysis of Window™ PE files. This configuration may have a named version and 
+            that named version can be captured in this property. This will ensure additional runs can be configured in the same way.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.Modules">
+            <summary>
+            The specific analysis modules that were used and configured in the product during this analysis run. 
+            For example, configuring a product to support analysis of Dridex.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.AnalysisEngineVersion">
+            <summary>
+            The version of the analysis engine or product (including AV engines) that was used to perform the analysis.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.AnalysisDefinitionVersion">
+            <summary>
+            The version of the analysis definitions used by the analysis tool (including AV tools).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.Submitted">
+            <summary>
+            The date and time that the malware was first submitted for scanning or analysis. This value will stay constant while the scanned date can change. 
+            For example, when Malware was submitted to a virus analysis tool.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.AnalysisStarted">
+            <summary>
+            The date and time that the malware analysis was initiated.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.AnalysisEnded">
+            <summary>
+            The date and time that the malware analysis ended.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.ResultName">
+            <summary>
+            The classification result or name assigned to the malware instance by the scanner tool.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.Result">
+            <summary>
+            The classification result as determined by the scanner or tool analysis process.
+            
+            The value for this property SHOULD come from the malware-result-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.AnalysisScoRefs">
+            <summary>
+            This property contains the references to the STIX Cyber-observable Objects that were captured during the analysis process.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.MalwareAnalysis.SampleRef">
+            <summary>
+            This property contains the reference to the SCO file, network traffic or artifact object that this malware analysis was performed against.
+            
+            Caution should be observed when creating an SRO between Malware and Malware Analysis objects when the Malware sample_refs property does not 
+            contain the SCO that is included in the Malware Analysis sample_ref property.
+            
+            Note, this property can also contain a reference to an SCO which is not associated with Malware (i.e., some SCO which was scanned and found to be benign.)
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Note">
+            <summary>
+            A Note is intended to convey informative text to provide further context and/or to provide additional analysis not contained in the STIX Objects, 
+            Marking Definition objects, or Language Content objects which the Note relates to. Notes can be created by anyone (not just the original object creator).
+            
+            For example, an analyst may add a Note to a Campaign object created by another organization indicating that they've seen posts related to that Campaign on a hacker forum.
+            
+            Because Notes are typically (though not always) created by human analysts and are comprised of human-oriented text, they contain an additional property to capture 
+            the analyst(s) that created the Note. This is distinct from the created_by_ref property, which is meant to capture the organization that created the object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Note.Abstract">
+            <summary>
+            A brief summary of the note content.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Note.Content">
+            <summary>
+            The content of the note.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Note.Authors">
+            <summary>
+            The name of the author(s) of this note (e.g., the analyst(s) that created it).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Note.ObjectRefs">
+            <summary>
+            The STIX Objects that the note is being applied to.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.ObservedData">
+            <summary>
+            Observed Data conveys information about cyber security related entities such as files, systems, and networks using the STIX Cyber-observable Objects (SCOs). 
+            For example, Observed Data can capture information about an IP address, a network connection, a file, or a registry key. Observed Data is not an intelligence 
+            assertion, it is simply the raw information without any context for what it means.
+            
+            Observed Data can capture that a piece of information was seen one or more times. Meaning, it can capture both a single observation of a single entity (file, network connection) 
+            as well as the aggregation of multiple observations of an entity. When the number_observed property is 1 the Observed Data represents a single entity. 
+            When the number_observed property is greater than 1, the Observed Data represents several instances of an entity potentially collected over a period of time. 
+            If a time window is known, that can be captured using the first_observed and last_observed properties. When used to collect aggregate data, it is likely that 
+            some properties in the SCO (e.g., timestamp properties) will be omitted because they would differ for each of the individual observations.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ObservedData.FirstObserved">
+            <summary>
+            The beginning of the time window during which the data was seen.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ObservedData.LastObserved">
+            <summary>
+            The end of the time window during which the data was seen.
+            This MUST be greater than or equal to the timestamp in the first_observed property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ObservedData.NumberObserved">
+            <summary>
+            The number of times that each Cyber-observable object represented in the objects or object_ref 
+            property was seen. If present, this MUST be an integer between 1 and 999,999,999 inclusive.
+            
+            If the number_observed property is greater than 1, the data contained in the objects or object_refs 
+            property was seen multiple times. In these cases, object creators MAY omit properties of the 
+            SCO (such as timestamps) that are specific to a single instance of that observed data.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ObservedData.Objects">
+            <summary>
+            (Deprecated), type: observable-container
+            A dictionary of SCO representing the observation. The dictionary MUST contain at least one object.
+            The cyber observable content MAY include multiple objects if those objects are related as part of 
+            a single observation. Multiple objects not related to each other via cyber observable Relationships 
+            MUST NOT be contained within the same Observed Data instance.
+            This property MUST NOT be present if object_refs is provided.
+            For example, a Network Traffic object and two IPv4 Address objects related via the src_ref and dst_ref 
+            properties can be contained in the same Observed Data because they are all related and used to characterize 
+            that single entity.
+            NOTE: this property is now deprecated in favor of object_refs and will be removed in a future version.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ObservedData.ObjectRefs">
+            <summary>
+            A list of SCOs and SROs representing the observation. The object_refs MUST contain at least one SCO reference if defined.
+            The object_refs MAY include multiple SCOs and their corresponding SROs, if those SCOs are related as part of a single observation.
+            
+            For example, a Network Traffic object and two IPv4 Address objects related via the src_ref and dst_ref properties can be contained 
+            in the same Observed Data because they are all related and used to characterize that single entity.
+            
+            This property MUST NOT be present if objects is provided.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Opinion">
+            <summary>
+            An Opinion is an assessment of the correctness of the information in a STIX Object produced by a different entity. 
+            The primary property is the opinion property, which captures the level of agreement or disagreement using a fixed 
+            scale. That fixed scale also supports a numeric mapping to allow for consistent statistical operations across opinions.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Opinion.Explanation">
+            <summary>
+            An explanation of why the producer has this Opinion. For example, if an Opinion of strongly-disagree is given,
+            the explanation can contain an explanation of why the Opinion producer disagrees and what evidence they have 
+            for their disagreement.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Opinion.Authors">
+            <summary>
+            The name of the author(s) of this Opinion (e.g., the analyst(s) that created it).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Opinion._Opinion">
+            <summary>
+            The opinion that the producer has about all of the STIX Object(s) listed in the object_refs property.
+            The values of this property MUST come from the opinion-enum enumeration.
+            strongly-disagree = 1, disagree = 2, neutral = 3, agree = 5, strongly-agree = 5
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Opinion.ObjectRefs">
+            <summary>
+            The STIX Objects that the Opinion is being applied to.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Report">
+            <summary>
+            Reports are collections of threat intelligence focused on one or more topics, such as a description of a threat actor, 
+            malware, or attack technique, including context and related details. They are used to group related threat intelligence 
+            together so that it can be published as a comprehensive cyber threat story.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Report.Name">
+            <summary>
+            A name used to identify the Report.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Report.Description">
+            <summary>
+            A description that provides more details and context about the Report, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Report.ReportTypes">
+            <summary>
+            The primary type(s) of content found in this report.
+            
+            The values for this property SHOULD come from the report-type-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Report.Published">
+            <summary>
+            The date that this Report object was officially published by the creator of this report.
+            The publication date(public release, legal release, etc.) may be different than the date the report was created 
+            or shared internally(the date in the created property).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Report.ObjectRefs">
+            <summary>
+            Specifies the STIX Objects that are referred to by this Report.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.ThreatActor">
+            <summary>
+            Threat Actors are actual individuals, groups, or organizations believed to be operating with malicious intent. A Threat Actor is not an Intrusion 
+            Set but may support or be affiliated with various Intrusion Sets, groups, or organizations over time.
+            
+            Threat Actors leverage their resources, and possibly the resources of an Intrusion Set, to conduct attacks and run Campaigns against targets.
+            
+            Threat Actors can be characterized by their motives, capabilities, goals, sophistication level, past activities, resources they have access to, 
+            and their role in the organization.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.Name">
+            <summary>
+            A name used to identify this Threat Actor or Threat Actor group.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.Description">
+            <summary>
+            A description that provides more details and context about the Threat Actor, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.ThreatActorTypes">
+            <summary>
+            The type(s) of this threat actor.
+            
+            The values for this property SHOULD come from the threat-actor-type-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.Aliases">
+            <summary>
+            A list of other names that this Threat Actor is believed to use.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.FirstSeen">
+            <summary>
+            The time that this Threat Actor was first seen.
+            This property is a summary property of data from sightings and other data that may or may not be available in STIX. If new sightings are received
+            that are earlier than the first seen timestamp, the object may be updated to account for the new data.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.LastSeen">
+            <summary>
+            The time that this Threat Actor was last seen.
+            
+            This property is a summary property of data from sightings and other data that may or may not be available in STIX. If new sightings are received 
+            that are later than the last seen timestamp, the object may be updated to account for the new data.
+            
+            If this property and the first_seen property are both defined, then this property MUST be greater than or equal to the timestamp in the first_seen property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.Roles">
+            <summary>
+            A list of roles the Threat Actor plays.
+            The values for this property SHOULD come from the threat-actor-role-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.Goals">
+            <summary>
+            The high-level goals of this Threat Actor, namely, what are they trying to do. For example, they may be motivated by personal gain, but their goal is to steal 
+            credit card numbers. To do this, they may execute specific Campaigns that have detailed objectives like compromising point of sale systems at a large retailer.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.Sophistication">
+            <summary>
+            The skill, specific knowledge, special training, or expertise a Threat Actor must have to perform the attack.
+            The value for this property SHOULD come from the threat-actor-sophistication-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.ResourceLevel">
+            <summary>
+            The organizational level at which this Threat Actor typically works, which in turn determines the resources available to this Threat Actor for use in an attack. 
+            This attribute is linked to the sophistication property — a specific resource level implies that the Threat Actor has access to at least a specific sophistication level.
+            
+            The value for this property SHOULD come from the attack-resource-level-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.PrimaryMotivation">
+            <summary>
+            The primary reason, motivation, or purpose behind this Threat Actor. The motivation is why the Threat Actor wishes to achieve the goal (what they are trying to achieve).
+            For example, a Threat Actor with a goal to disrupt the finance sector in a country might be motivated by ideological hatred of capitalism.
+            The value for this property SHOULD come from the attack-motivation-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.SecondaryMotivations">
+            <summary>
+            This property specifies the secondary reasons, motivations, or purposes behind this Threat Actor.
+            
+            These motivations can exist as an equal or near-equal cause to the primary motivation. However, it does not replace or necessarily magnify the primary motivation, but it 
+            might indicate additional context. The position in the list has no significance.
+            
+            The value for this property SHOULD come from the attack-motivation-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.ThreatActor.PersonalMotivations">
+            <summary>
+            The personal reasons, motivations, or purposes of the Threat Actor regardless of organizational goals.
+            
+            Personal motivation, which is independent of the organization’s goals, describes what impels an individual to carry out an attack. Personal motivation may align with the 
+            organization’s motivation—as is common with activists—but more often it supports personal goals. For example, an individual analyst may join a Data Miner corporation 
+            because his or her skills may align with the corporation’s objectives. But the analyst most likely performs his or her daily work toward those objectives for personal 
+            reward in the form of a paycheck. The motivation of personal reward may be even stronger for Threat Actors who commit illegal acts, as it is more difficult for someone 
+            to cross that line purely for altruistic reasons. The position in the list has no significance.
+            
+            The values for this property SHOULD come from the attack-motivation-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Tool">
+            <summary>
+            Tools are legitimate software that can be used by threat actors to perform attacks. Knowing how and when threat actors use such tools can be 
+            important for understanding how campaigns are executed. Unlike malware, these tools or software packages are often found on a system and have 
+            legitimate purposes for power users, system administrators, network administrators, or even normal users. Remote access tools (e.g., RDP) and 
+            network scanning tools (e.g., Nmap) are examples of Tools that may be used by a Threat Actor during an attack.
+            
+            The Tool SDO characterizes the properties of these software tools and can be used as a basis for making an assertion about how a Threat Actor 
+            uses them during an attack. It contains properties to name and describe the tool, a list of Kill Chain Phases the tool can be used to carry 
+            out, and the version of the tool.
+            
+            This SDO MUST NOT be used to characterize malware. Further, Tool MUST NOT be used to characterize tools used as part of a course of action in 
+            response to an attack.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Tool.Name">
+            <summary>
+            The name used to identify the Tool.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Tool.Description">
+            <summary>
+            A description that provides more details and context about the Tool, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Tool.ToolTypes">
+            <summary>
+            The kind(s) of tool(s) being described.
+            The values for this property SHOULD come from the tool-type-ov open vocabulary.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Tool.Aliases">
+            <summary>
+            Alternative names used to identify this Tool.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Tool.KillChainPhases">
+            <summary>
+            The list of kill chain phases for which this Tool can be used.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Tool.ToolVersion">
+            <summary>
+            The version identifier associated with the Tool.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SDO.Vulnerability">
+            <summary>
+            A Vulnerability is a weakness or defect in the requirements, designs, or implementations of the computational logic (e.g., code) found in 
+            software and some hardware components (e.g., firmware) that can be directly exploited to negatively impact the confidentiality, integrity, 
+            or availability of that system.
+            
+            CVE is a list of information security vulnerabilities and exposures that provides common names for publicly known problems [CVE]. 
+            For example, if a piece of malware exploits CVE-2015-12345, a Malware object could be linked to a Vulnerability object that references CVE-2015-12345.
+            
+            The Vulnerability SDO is primarily used to link to external definitions of vulnerabilities or to describe 0-day vulnerabilities that do not 
+            yet have an external definition. Typically, other SDOs assert relationships to Vulnerability objects when a specific vulnerability is targeted 
+            and exploited as part of malicious cyber activity. As such, Vulnerability objects can be used as a linkage to the asset management and compliance process.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Vulnerability.Name">
+            <summary>
+            A name used to identify the Vulnerability.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Vulnerability.Description">
+            <summary>
+            A description that provides more details and context about the Vulnerability, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SDO.Vulnerability.ExternalReferences">
+            <summary>
+            A list of external references which refer to non-STIX information. This property MAY be used to provide one or more Vulnerability identifiers, 
+            such as a CVE ID [CVE]. When specifying a CVE ID, the source_name property of the external reference MUST be set to cve and the external_id 
+            property MUST be the exact CVE identifier.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.ISroStix">
+            <summary>
+            STIX Relationship Objects
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SroStix">
+            <summary>
+            STIX Relationship Objects:
+            Objects that connect STIX Domain Objects together, STIX Cyber-observable Objects together, and connect STIX Domain Objects 
+            and STIX Cyber-observable Objects together to form a more complete understanding of the threat landscape.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.SpecVersion">
+            <summary>
+            The version of the STIX specification used to represent this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.CreatedByRef">
+            <summary>
+            The created_by_ref property specifies the id property of the identity object that describes the entity that created this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.Created">
+            <summary>
+            The created property represents the time at which the object was originally created.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.Modified">
+            <summary>
+            The modified property is only used by STIX Objects that support versioning and represents the time that this particular version 
+            of the object was last modified.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.Revoked">
+            <summary>
+            The revoked property is only used by STIX Objects that support versioning and indicates whether the object has been revoked.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.Labels">
+            <summary>
+            The labels property specifies a set of terms used to describe this object. The terms are user-defined or trust-group defined and 
+            their meaning is outside the scope of this specification and MAY be ignored.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.Confidence">
+            <summary>
+            The confidence property identifies the confidence that the creator has in the correctness of their data. The confidence value MUST
+            be a number in the range of 0-100.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.Lang">
+            <summary>
+            The lang property identifies the language of the text content in this object. When present, it MUST be a language code conformant 
+            to [RFC5646]. If the property is not present, then the language of the content is en (English).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.ExternalReferences">
+            <summary>
+            The external_references property specifies a list of external references which refers to non-STIX information. This property is 
+            used to provide one or more URLs, descriptions, or IDs to records in other systems.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.ObjectMarkingRefs">
+            <summary>
+            The object_marking_refs property specifies a list of id properties of marking-definition objects that apply to this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.GranularMarkings">
+            <summary>
+            The granular_markings property specifies a list of granular markings applied to this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SroStix.Extensions">
+            <summary>
+            Specifies any extensions of the object, as a dictionary.
+            
+            Dictionary keys SHOULD be the id of a STIX Extension object or the name of a predefined object extension found in this specification, 
+            depending on the type of extension being used.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SRO.Relationship">
+            <summary>
+            The Relationship object is used to link together two SDOs or SCOs in order to describe how they are related to each other. 
+            If SDOs and SCOs are considered "nodes" or "vertices" in the graph, the Relationship Objects (SROs) represent "edges".
+            
+            STIX defines many relationship types to link together SDOs and SCOs. These relationships are contained in the "Relationships" 
+            table under each SDO and SCO definition. Relationship types defined in the specification SHOULD be used to ensure consistency. 
+            An example of a specification-defined relationship is that an indicator indicates a campaign. That relationship type is listed 
+            in the Relationships section of the Indicator SDO definition.
+            
+            STIX also allows relationships from any SDO or SCO to any SDO or SCO that have not been defined in this specification. These 
+            relationships MAY use the related-to relationship type or MAY use a user-defined relationship type. As an example, a user might 
+            want to link malware directly to a tool. They can do so using related-to to say that the Malware is related to the Tool but not 
+            describe how, or they could use delivered-by (a user-defined name they determined) to indicate more detail.
+            
+            Note that some relationships in STIX may seem like "shortcuts". For example, an Indicator doesn't really detect a Campaign: it 
+            detects activity (Attack Patterns, Malware, Infrastructure, etc.) that are often used by that campaign. While some analysts might 
+            want all of the source data and think that shortcuts are misleading, in many cases it's helpful to provide just the key points 
+            (shortcuts) and leave out the low-level details. In other cases, the low-level analysis may not be known or sharable, while the 
+            high-level analysis is. For these reasons, relationships that might appear to be "shortcuts" are not excluded from STIX.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Relationship.RelationshipType">
+            <summary>
+            The name used to identify the type of Relationship. This value SHOULD be an exact value listed in the relationships for the 
+            source and target SDO, but MAY be any string. The value of this property MUST be in ASCII and is limited to characters a–z 
+            (lowercase ASCII), 0–9, and hyphen (-).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Relationship.Description">
+            <summary>
+            A description that provides more details and context about the Relationship, potentially including its purpose and its key characteristics.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Relationship.SourceRef">
+            <summary>
+            The id of the source (from) object. The value MUST be an ID reference to an SDO or SCO (i.e., it cannot point to an SRO, Bundle, Language Content, 
+            or Marking Definition).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Relationship.TargetRef">
+            <summary>
+            The id of the target (to) object. The value MUST be an ID reference to an SDO or SCO (i.e., it cannot point to an SRO, Bundle, Language Content, 
+            or Marking Definition).
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Relationship.StartTime">
+            <summary>
+            This optional timestamp represents the earliest time at which the Relationship between the objects exists.If this property is a future timestamp, 
+            at the time the start_time property is defined, then this represents an estimate by the producer of the intelligence of the earliest time at which 
+            relationship will be asserted to be true.
+            
+            If it is not specified, then the earliest time at which the relationship between the objects exists is not defined.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Relationship.stop_time">
+            <summary>
+            The latest time at which the Relationship between the objects exists. If this property is a future timestamp, at the time the stop_time property is 
+            defined, then this represents an estimate by the producer of the intelligence of the latest time at which relationship will be asserted to be true.
+            
+            If start_time and stop_time are both defined, then stop_time MUST be later than the start_time value.
+            
+            If stop_time is not specified, then the latest time at which the relationship between the objects exists is either not known, not disclosed, or has 
+            no defined stop time.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Core.SRO.Sighting">
+            <summary>
+            A Sighting denotes the belief that something in CTI (e.g., an indicator, malware, tool, threat actor, etc.) was seen. Sightings are used 
+            to track who and what are being targeted, how attacks are carried out, and to track trends in attack behavior.
+            
+            The Sighting relationship object is a special type of SRO; it is a relationship that contains extra properties not present on the Generic 
+            Relationship object. These extra properties are included to represent data specific to sighting relationships (e.g., count, representing 
+            how many times something was seen), but for other purposes a Sighting can be thought of as a Relationship with a name of "sighting-of". 
+            Sighting is captured as a relationship because you cannot have a sighting unless you have something that has been sighted. Sighting does 
+            not make sense without the relationship to what was sighted.
+            
+            Sighting relationships relate three aspects of the sighting:
+              -  What was sighted, such as the Indicator, Malware, Campaign, or other SDO (sighting_of_ref)
+              -  Who sighted it and/or where it was sighted, represented as an Identity (where_sighted_refs)
+              -  What was actually seen on systems and networks, represented as Observed Data (observed_data_refs)
+              
+            What was sighted is required; a sighting does not make sense unless you say what you saw. Who sighted it, where it was sighted, and what 
+            was actually seen are optional. In many cases it is not necessary to provide that level of detail in order to provide value.
+            
+            Sightings are used whenever any SDO has been "seen". In some cases, the object creator wishes to convey very little information about the 
+            sighting; the details might be sensitive, but the fact that they saw a malware instance or threat actor could still be very useful. 
+            In other cases, providing the details may be helpful or even necessary; saying exactly which of the 1000 IP addresses in an indicator were 
+            sighted is helpful when tracking which of those IPs is still malicious.
+            
+            Sighting is distinct from Observed Data in that Sighting is an intelligence assertion ("I saw this threat actor") while Observed Data is 
+            simply information ("I saw this file"). When you combine them by including the linked Observed Data (observed_data_refs) from a Sighting, 
+            you can say "I saw this file, and that makes me think I saw this threat actor".
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Sighting.Description">
+            <summary>
+            A description that provides more details and context about the Sighting.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Sighting.FirstSeen">
+            <summary>
+            The beginning of the time window during which the SDO referenced by the sighting_of_ref property was sighted.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Sighting.LastSeen">
+            <summary>
+            The end of the time window during which the SDO referenced by the sighting_of_ref property was sighted.
+            
+            If this property and the first_seen property are both defined, then this property MUST be greater than or equal to the timestamp 
+            in the first_seen property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Sighting.Count">
+            <summary>
+            If present, this MUST be an integer between 0 and 999,999,999 inclusive and represents the number of times the SDO referenced by 
+            the sighting_of_ref property was sighted.
+            
+            Observed Data has a similar property called number_observed, which refers to the number of times the data was observed. These 
+            counts refer to different concepts and are distinct.
+            
+            For example, a single sighting of a DDoS bot might have many millions of observations of the network traffic that it generates.
+            Thus, the Sighting count would be 1 (the bot was observed once) but the Observed Data number_observed would be much higher.
+            
+            As another example, a sighting with a count of 0 can be used to express that an indicator was not seen at all.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Sighting.SightingOfRef">
+            <summary>
+            An ID reference to the SDO that was sighted (e.g., Indicator or Malware).
+            For example, if this is a Sighting of an Indicator, that Indicator’s ID would be the value of this property.
+            This property MUST reference only an SDO.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Sighting.ObservedDataRefs">
+            <summary>
+            A list of ID references to the Observed Data objects that contain the raw cyber data for this Sighting.
+            For example, a Sighting of an Indicator with an IP address could include the Observed Data for the network connection that the 
+            Indicator was used to detect.
+            This property MUST reference only Observed Data SDOs.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Sighting.WhereSightedRefs">
+            <summary>
+            A list of ID references to the Identity or Location objects describing the entities or types of entities that saw the sighting.
+            Omitting the where_sighted_refs property does not imply that the sighting was seen by the object creator. To indicate that the 
+            sighting was seen by the object creator, an Identity representing the object creator should be listed in where_sighted_refs.
+            
+            This property MUST reference only Identity or Location SDOs.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Core.SRO.Sighting.Summary">
+            <summary>
+            The summary property indicates whether the Sighting should be considered summary data. Summary data is an aggregation of previous 
+            Sightings reports and should not be considered primary source data. Default value is false.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Internal.Constants">
+            <summary>
+            Global Constants
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Internal.Throws">
+            <summary>
+            Defines static methods used to throw exceptions.
+            </summary>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfNull``1(``0,System.String)">
+            <summary>
+            Throws an System.ArgumentNullException if the specified argument is null.
+            </summary>
+            <typeparam name="T">Argument type to be checked for null.</typeparam>
+            <param name="argument">Object to be checked for null.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of argument.</returns>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfNullOrMemberNull``2(``0,``1,System.String,System.String)">
+            <summary>
+            Throws an System.ArgumentNullException if the specified argument is null, or
+            System.ArgumentException if the specified member is null.
+            </summary>
+            <typeparam name="TParameter">Argument type to be checked for null.</typeparam>
+            <typeparam name="TMember">Member type to be checked for null.</typeparam>
+            <param name="argument">Argument to be checked for null.</param>
+            <param name="member">Object member to be checked for null.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <param name="memberName">The name of the member.</param>
+            <returns>The original value of member.</returns>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfMemberNull``2(``0,``1,System.String,System.String)">
+            <summary>
+            Throws an System.ArgumentException if the specified member is null.
+            </summary>
+            <typeparam name="TParameter">Argument type.</typeparam>
+            <typeparam name="TMember">Member type to be checked for null.</typeparam>
+            <param name="argument">Argument to which member belongs.</param>
+            <param name="member">Object member to be checked for null.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <param name="memberName">The name of the member.</param>
+            <returns>The original value of member.</returns>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfNullOrWhitespace(System.String,System.String)">
+            <summary>
+            Throws either an System.ArgumentNullException or an System.ArgumentException
+            if the specified string is null or whitespace respectively.
+            </summary>
+            <param name="argument">String to be checked for null or whitespace.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of argument.</returns>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfNullOrEmpty(System.String,System.String)">
+            <summary>
+            Throws an System.ArgumentNullException if the string is null, or System.ArgumentException if it is empty.
+            </summary>
+            <param name="argument">String to be checked for null or empty.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of argument.</returns>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfBufferTooSmall(System.Int32,System.Int32,System.String)">
+            <summary>
+            Throws an System.ArgumentException if the argument's buffer size is less than the required buffer size.
+            </summary>
+            <param name="bufferSize">The actual buffer size.</param>
+            <param name="requiredSize">The required buffer size.</param>
+            <param name="paramName">The name of the parameter to be checked.</param>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfOutOfRange``1(``0,System.String)">
+            <summary>
+            Throws an System.ArgumentOutOfRangeException if the enum value is not valid.
+            </summary>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+            <param name="argument">The argument to evaluate.</param>
+            <param name="paramName"></param>
+            <returns>The original value of argument.</returns>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfNullOrEmpty``1(System.Collections.Generic.ICollection{``0},System.String)">
+            <summary>
+            Throws an System.ArgumentNullException if the collection is null, or System.ArgumentException if it is empty.
+            </summary>
+            <typeparam name="T">The type of objects in the collection.</typeparam>
+            <param name="argument">The collection to evaluate.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of argument.</returns>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.IfNullOrEmpty``1(System.Collections.Generic.IReadOnlyCollection{``0},System.String)">
+            <summary>
+            Throws an System.ArgumentNullException if the collection is null, or System.ArgumentException if it is empty.
+            </summary>
+            <typeparam name="T">The type of objects in the collection.</typeparam>
+            <param name="argument">The collection to evaluate.</param>
+            <param name="paramName">The name of the parameter being checked.</param>
+            <returns>The original value of argument.</returns>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.ArgumentNullException(System.String)">
+            <summary>
+            Throws an System.ArgumentNullException.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.ArgumentNullException(System.String)"></exception>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.ArgumentNullException(System.String,System.String)">
+            <summary>
+            Throws an System.ArgumentNullException.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="message">A message that describes the error.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.ArgumentNullException(System.String)"></exception>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.ArgumentOutOfRangeException(System.String)">
+            <summary>
+            Throws an System.ArgumentOutOfRangeException.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.ArgumentOutOfRangeException(System.String)"></exception>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.ArgumentOutOfRangeException(System.String,System.String)">
+            <summary>
+            Throws an System.ArgumentOutOfRangeException.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="message">A message that describes the error.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.ArgumentOutOfRangeException(System.String)"></exception>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.ArgumentOutOfRangeException(System.String,System.Object,System.String)">
+            <summary>
+            Throws an System.ArgumentOutOfRangeException.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="actualValue">The value of the argument that caused this exception.</param>
+            <param name="message">A message that describes the error.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.ArgumentOutOfRangeException(System.String)"></exception>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.ArgumentException(System.String,System.String)">
+            <summary>
+            Throws an System.ArgumentException.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="message">A message that describes the error.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.ArgumentException(System.String,System.String)"></exception>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.ArgumentException(System.String,System.String,System.Exception)">
+            <summary>
+            Throws an System.ArgumentException.
+            If the innerException is not a null, the current exception is raised in a catch block that handles the inner exception.
+            </summary>
+            <param name="paramName">The name of the parameter that caused the exception.</param>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.ArgumentException(System.String,System.String)"></exception>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.InvalidOperationException(System.String)">
+            <summary>
+             an System.InvalidOperationException.
+            </summary>
+            <param name="message">A message that describes the error.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.InvalidOperationException(System.String)"></exception>
+        </member>
+        <member name="M:Cti.Stix.Internal.Throws.InvalidOperationException(System.String,System.Exception)">
+            <summary>
+            Throws an System.InvalidOperationException.
+            </summary>
+            <param name="message">A message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+            <exception cref="M:Cti.Stix.Internal.Throws.InvalidOperationException(System.String)"></exception>
+        </member>
+        <member name="T:Cti.Stix.Meta.LanguageContentStix">
+            <summary>
+            The Language Content object represents text content for STIX Objects represented in languages other than that of the original object. 
+            Language content may be a translation of the original object by a third-party, a first-source translation by the original publisher, 
+            or additional official language content provided at the time of creation.
+            
+            Language Content contains two important sets of properties:
+                - The object_ref and object_modified properties specify the target object that the language content applies to.
+                    For example, to provide additional language content for a Campaign, the object_ref property should be set to the id of the 
+                    Campaign and the object_modified property set to its modified time. Most relationships in STIX are not specific to a particular 
+                    version of a STIX object, but because language content provides the translation of specific text, the object_modified property 
+                    is necessary to provide that specificity.
+                - The content property is a dictionary which maps to properties in the target object in order to provide a translation of them.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.SpecVersion">
+            <summary>
+            The version of the STIX specification used to represent this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.Created">
+            <summary>
+            The created property represents the time at which the object was originally created.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.Modified">
+            <summary>
+            The modified property is only used by STIX Objects that support versioning and represents the time that this particular version 
+            of the object was last modified.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.CreatedByRef">
+            <summary>
+            The created_by_ref property specifies the id property of the identity object that describes the entity that created this object.
+            
+            related-to
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.Revoked">
+            <summary>
+            The revoked property is only used by STIX Objects that support versioning and indicates whether the object has been revoked.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.Labels">
+            <summary>
+            The labels property specifies a set of terms used to describe this object. The terms are user-defined or trust-group defined and 
+            their meaning is outside the scope of this specification and MAY be ignored.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.Confidence">
+            <summary>
+            The confidence property identifies the confidence that the creator has in the correctness of their data. The confidence value MUST
+            be a number in the range of 0-100.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.ExternalReferences">
+            <summary>
+            The external_references property specifies a list of external references which refers to non-STIX information. This property is 
+            used to provide one or more URLs, descriptions, or IDs to records in other systems.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.ObjectMarkingRefs">
+            <summary>
+            The object_marking_refs property specifies a list of id properties of marking-definition objects that apply to this object.
+            
+            related-to
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.GranularMarkings">
+            <summary>
+            The granular_markings property specifies a list of granular markings applied to this object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.Extensions">
+            <summary>
+            Specifies any extensions of the object, as a dictionary.
+            Dictionary keys SHOULD be the id of a STIX Extension object or the name of a predefined object extension found in this specification, 
+            depending on the type of extension being used.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.ObjectRef">
+            <summary>
+            The object_ref property identifies the id of the object that this Language Content applies to. It MUST be the identifier for a STIX Object.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.ObjectModified">
+            <summary>
+            The object_modified property identifies the modified time of the object that this Language Content applies to. It MUST be an exact match for 
+            the modified time of the STIX Object being referenced.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Meta.LanguageContentStix.Contents">
+            <summary>
+            The contents property contains the actual Language Content (translation).
+            
+            The keys in the dictionary MUST be RFC 5646 language codes for which language content is being provided [RFC5646]. The values each consist of 
+            a dictionary that mirrors the properties in the target object (identified by object_ref and object_modified). For example, to provide a 
+            translation of the name property on the target object the key in the dictionary would be name.
+            
+            For each key in the nested dictionary:
+                - If the original property is a string, the corresponding property in the language content object MUST contain a string with the content for that 
+                  property in the language of the top-level key.
+                - If the original property is a list, the corresponding property in the translation object must also be a list. Each item in this list recursively 
+                  maps to the item at the same position in the list contained in the target object. The lists MUST have the same length.
+                - In the event that translations are only provided for some list items, the untranslated list items MUST be represented by an empty string (""). 
+                  This indicates to a consumer of the Language Content object that they should interpolate the translated list items in the Language Content 
+                  object with the corresponding (untranslated) list items from the original object as indicated by the object_ref property.
+                - If the original property is an object (including dictionaries), the corresponding location in the translation object must also be an object. 
+                  Each key/value field in this object recursively maps to the object with the same key in the original.
+            
+            The translation object MAY contain only a subset of the translatable fields of the original. Keys that point to non-translatable properties in the 
+            target or to properties that do not exist in the target object MUST be ignored.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.IStix">
+            <summary>
+            Structured Threat Information Expression
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.IStix.ObjectType">
+            <summary>
+            The type property identifies the type of STIX Object
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.IStix.ID">
+            <summary>
+            The id property uniquely identifies this object.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Stix">
+            <summary>
+            STIX is a schema that defines a taxonomy of cyber threat intelligence
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Stix.Raw">
+            <summary>
+            Raw is excluded from JSON and BSON serialization
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Stix.ObjectType">
+            <summary>
+            The type property identifies the type of STIX Object
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Stix.ID">
+            <summary>
+            The id property uniquely identifies this object.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Types.EmailMimeComponentType">
+            <summary>
+            Specifies one component of a multi-part email body.
+            There is no property to capture the value of the "Content-Transfer-Encoding" header field, since the body MUST be decoded before being represented in the body property.
+            One of body OR body_raw_ref MUST be included.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.EmailMimeComponentType.Body">
+            <summary>
+            Specifies the contents of the MIME part if the content_type is not provided or starts with text/ (e.g., in the case of plain text or HTML email).
+            For inclusion in this property, the contents MUST be decoded to Unicode. Note that the charset provided in content_type is for informational usage 
+            and not for decoding of this property.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.EmailMimeComponentType.BodyRawRef">
+            <summary>
+            Specifies the contents of non-textual MIME parts, that is those whose content_type does not start with text/, as a reference to an Artifact object or File object.
+            The object referenced in this property MUST be of type artifact or file. For use cases where conveying the actual data contained in the MIME part is of primary 
+            importance, artifact SHOULD be used. Otherwise, for use cases where conveying metadata about the file-like properties of the MIME part is of primary importance, 
+            file SHOULD be used.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.EmailMimeComponentType.ContentType">
+            <summary>
+            Specifies the value of the "Content-Type" header field of the MIME part.
+            Any additional "Content-Type" header field parameters such as charset SHOULD be included in this property.
+            Example:
+            text/html; charset=UTF-8
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.EmailMimeComponentType.ContentDisposition">
+            <summary>
+            Specifies the value of the "Content-Disposition" header field of the MIME part.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Types.ExternalReference">
+            <summary>
+            External references are used to describe pointers to information represented outside of STIX. 
+            For example, a Malware object could use an external reference to indicate an ID for that malware in an external database or a report could use references to represent source material.
+            The JSON MTI serialization uses the JSON Object type[RFC8259] when representing external-reference.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.ExternalReference.Description">
+            <summary>
+            Description of the external reference
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.ExternalReference.URL">
+            <summary>
+            URL associated with the external reference
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.ExternalReference.Hashes">
+            <summary>
+            Hashes associated with the external reference (map of string keys to string values)
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.ExternalReference.ExternalID">
+            <summary>
+            External ID associated with the external reference
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.GranularMarking.MarkingRef">
+            <summary>
+            Marking reference associated with the granular marking
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.GranularMarking.Selectors">
+            <summary>
+            List of selectors associated with the granular marking
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Types.KillChainPhase">
+            <summary>
+            The kill-chain-phase represents a phase in a kill chain, which describes the various phases an 
+            attacker may undertake in order to achieve their objectives.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.KillChainPhase.KillChainName">
+            <summary>
+            The name of the kill chain. The value of this property SHOULD be all lowercase and SHOULD 
+            use hyphens instead of spaces or underscores as word separators.
+            </summary>
+        </member>
+        <member name="P:Cti.Stix.Types.KillChainPhase.PhaseName">
+            <summary>
+            The name of the phase in the kill chain. The value of this property SHOULD be all lowercase 
+            and SHOULD use hyphens instead of spaces or underscores as word separators.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Types.WindowsRegistryValueType">
+            <summary>
+            The Windows Registry Value type captures the properties of a Windows Registry Key Value. As all 
+            properties of this type are optional, at least one of the properties defined below MUST be 
+            included when using this type.
+            </summary>
+        </member>
+        <member name="T:Cti.Stix.Types.X509V3ExtensionsType">
+            <summary>
+            The X.509 v3 Extensions type captures properties associated with X.509 v3 extensions, which serve as a mechanism for 
+            specifying additional information such as alternative subject names. An object using the X.509 v3 Extensions type MUST 
+            contain at least one property from this type.
+            Note that the use of the term "extensions" in this context refers to the X.509 v3 Extensions type and is not a STIX 
+            Cyber Observables extension. Therefore, it is a type that describes X.509 extensions.
+            </summary>
+        </member>
+    </members>
+</doc>
