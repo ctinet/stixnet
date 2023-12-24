@@ -5,7 +5,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>Cti.Stix</RootNamespace>
-		<PackageId>StixNet</PackageId>
+		<PackageId>stixnet</PackageId>
 		<Version>1.0.0</Version>
 		<Authors>Nilay Vishwakarma</Authors>
 		<PackageDescription>C# API for STIX 2</PackageDescription>
@@ -15,9 +15,9 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<LangVersion>latest</LangVersion>
-		<DocumentationFile>..\stixnet.xml</DocumentationFile>		
+		<DocumentationFile>..\stixnet.xml</DocumentationFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
-
 	<ItemGroup>
 		<PackageReference Include="MongoDB.Bson" Version="2.23.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -29,6 +29,10 @@
 
 	<ItemGroup>
 		<Folder Include="Extension\" />
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 </Project>
