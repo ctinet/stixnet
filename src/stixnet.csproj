@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>Cti.Stix</RootNamespace>
+		<AssemblyName>Cti.Stix</AssemblyName>
 		<PackageId>stixnet</PackageId>
 		<Version>1.0.0</Version>
 		<Authors>Nilay Vishwakarma</Authors>
