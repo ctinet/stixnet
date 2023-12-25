@@ -1,4 +1,4 @@
-![STIX_LOGO](https://oasis-open.github.io/cti-documentation/img/LOGO_STIX.svg)
+![STIX_LOGO](./../docs/banner.svg)
 
 > `stixnet`
 > C# API for STIX 2
@@ -27,4 +27,4 @@ STIX is a schema that defines a taxonomy of cyber threat intelligence that is re
 		3. Marking Definition Objects
 
 
-![stix2_relationship_example](https://oasis-open.github.io/cti-documentation/img/stix2_relationship_example_2.png)
+![stix2_relationship_example](./../docs/relationships.png)
