@@ -1,13 +1,11 @@
-<div align="center">
+
 # stixnet
+	
 A C# API for STIX 2
 
 ![CI](https://github.com/ctinet/stixnet/actions/workflows/dotnet.yml/badge.svg)
 ![CodeQL](https://github.com/ctinet/stixnet/actions/workflows/codeql.yml/badge.svg)
 ![Nuget](https://github.com/ctinet/stixnet/actions/workflows/nuget.yml/badge.svg)
-
-</div>
-
 
 #### Install from Nuget
 
