@@ -7,7 +7,7 @@
 		<RootNamespace>Cti.Stix</RootNamespace>
 		<AssemblyName>Cti.Stix</AssemblyName>
 		<PackageId>stixnet</PackageId>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 		<Authors>Nilay Vishwakarma</Authors>
 		<PackageDescription>C# API for STIX 2</PackageDescription>
 		<RepositoryUrl>https://github.com/ctinet/stixnet</RepositoryUrl>
