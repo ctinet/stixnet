@@ -1,12 +1,11 @@
 <div align="center">
+# stixnet
+A C# API for STIX 2
 
-	![STIX_LOGO](https://github.com/ctinet/stixnet/raw/main/docs/banner.svg)
-	# stixnet
-	A C# API for STIX 2
+![CI](https://github.com/ctinet/stixnet/actions/workflows/dotnet.yml/badge.svg)
+![CodeQL](https://github.com/ctinet/stixnet/actions/workflows/codeql.yml/badge.svg)
+![Nuget](https://github.com/ctinet/stixnet/actions/workflows/nuget.yml/badge.svg)
 
-	![CI](https://github.com/ctinet/stixnet/actions/workflows/dotnet.yml/badge.svg)
-	![CodeQL](https://github.com/ctinet/stixnet/actions/workflows/codeql.yml/badge.svg)
-	![Nuget](https://github.com/ctinet/stixnet/actions/workflows/nuget.yml/badge.svg)
 </div>
 
 
@@ -15,7 +14,7 @@
 [![NuGet version (stixnet)](https://img.shields.io/nuget/v/stixnet?label=stixnet&logo=nuget)](https://www.nuget.org/packages/stixnet/)
 
 ```pwsh
-Install-Package stixnet -Version 1.0.2
+Install-Package stixnet
 ```
 
 ## What is STIX?
