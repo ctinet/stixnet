@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Cti.Stix
 {
     /// <summary>
-    /// Structured Threat Information Expression
+    /// Structured Threat Information Expression Base Object
     /// </summary>
     public interface IStix
     {
